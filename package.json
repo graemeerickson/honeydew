@@ -1,0 +1,28 @@
+{
+  "name": "honeydew",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/graemeerickson/honeydew.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/graemeerickson/honeydew/issues"
+  },
+  "homepage": "https://github.com/graemeerickson/honeydew#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.9",
+    "express": "^4.16.3",
+    "express-generator": "^4.16.0",
+    "mongoose": "^5.0.15",
+    "morgan": "^1.9.0",
+    "path": "^0.12.7"
+  }
+}
