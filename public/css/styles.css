@@ -1,0 +1,12 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #D1E681;
+  color: #2E197E;
+}
+.logo {
+  height: 64px;
+  width: 64px;
+}
+/*.col-lg-1 {
+  max-width: 16%;
+}*/
