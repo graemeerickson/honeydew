@@ -1,11 +1,9 @@
 body {
-  font-family: 'Roboto', sans-serif;
-  /*background-color: #D1E681;*/
   color: #2E197E;
+  font-family: 'Roboto', sans-serif;
 }
 table.table-bordered {
   border: 1px solid black;
-  /*margin-top:20px;*/
 }
 table.table-bordered > thead > tr > th {
   border: 1px solid black;
@@ -21,18 +19,16 @@ span {
 }
 .logo {
   height: 64px;
+  margin-top: 20px;
   width: 64px;
 }
 .header-btn {
-  margin-top: 20px;
-}
-.badge {
-  height: 20px;
+  margin-top: 45px;
 }
 .branded-btn {
   background-color: #D1E681;
   color: black;
 }
-/*.col-lg-1 {
-  max-width: 16%;
-}*/
+.badge {
+  height: 20px;
+}
