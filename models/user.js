@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 // include the user model
 const Recipe = require('../models/recipe');
+const MealPlan = require('../models/mealplan');
 
 const userSchema = new mongoose.Schema({
   name: String,
@@ -15,7 +16,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  recipes: [ Recipe.schema ]
+  recipes: [ Recipe.schema ],
+  mealPlan: [ MealPlan.schema ]
 })
 
 // check whether password is correct
