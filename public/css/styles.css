@@ -16,9 +16,15 @@ table.table-bordered > tbody > tr > th {
 table.table-bordered > tbody > tr > td {
   border: 1px solid black;
 }
+span {
+  font-size: 24px;
+}
 .logo {
   height: 64px;
   width: 64px;
+}
+.header-btn {
+  margin-top: 20px;
 }
 .badge {
   height: 20px;
