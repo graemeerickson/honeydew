@@ -1,11 +1,31 @@
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #D1E681;
+  /*background-color: #D1E681;*/
   color: #2E197E;
+}
+table.table-bordered {
+  border: 1px solid black;
+  /*margin-top:20px;*/
+}
+table.table-bordered > thead > tr > th {
+  border: 1px solid black;
+}
+table.table-bordered > tbody > tr > th {
+  border: 1px solid black;
+}
+table.table-bordered > tbody > tr > td {
+  border: 1px solid black;
 }
 .logo {
   height: 64px;
   width: 64px;
+}
+.badge {
+  height: 20px;
+}
+.branded-btn {
+  background-color: #D1E681;
+  color: black;
 }
 /*.col-lg-1 {
   max-width: 16%;
