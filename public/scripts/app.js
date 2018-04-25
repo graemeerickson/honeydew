@@ -3,7 +3,6 @@ var allRecipes = [];
 var activeRecipes = [];
 
 $(document).ready(function() {
-  
 
   renderHomePage();
 
@@ -16,10 +15,10 @@ $(document).ready(function() {
 });
 
 function renderRecipeBank() {
-  let html = `<span class="badge badge-pill badge-dark">Eggs</span>
-              <span class="badge badge-pill badge-dark">BLT</span>
-              <span class="badge badge-pill badge-dark">Chili</span>
-              <span class="badge badge-pill badge-dark">Molten Chocolate Lava Cake</span><br><br>`
+  let html = `<span class="badge badge-pill badge-light">Eggs</span>
+              <span class="badge badge-pill badge-light">BLT</span>
+              <span class="badge badge-pill badge-light">Chili</span>
+              <span class="badge badge-pill badge-light">Molten Chocolate Lava Cake</span><br><br>`
   return html;
 }
 
