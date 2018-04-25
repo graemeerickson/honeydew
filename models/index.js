@@ -10,5 +10,4 @@ mongoose.connect("mongodb://localhost/honeydew");
 module.exports.User = require("./user.js");
 module.exports.Ingredient = require("./ingredient.js");
 module.exports.Recipe = require("./recipe.js");
-module.exports.GroceryList = require("./grocerylist.js");
 module.exports.MealPlan = require("./mealplan.js");
