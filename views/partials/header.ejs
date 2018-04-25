@@ -4,11 +4,11 @@
       </div>
       <div class="col-11 text-right">
         <% if(!currentUser) {%>
-          <a href="/auth/login" class="btn btn-primary">Log In</a>
-          <a href="/auth/signup" class="btn btn-success">Sign Up</a>
+          <a href="/auth/login" class="btn btn-primary header-btn">Log In</a>
+          <a href="/auth/signup" class="btn btn-success header-btn">Sign Up</a>
         <% } else { %>
-          <a href="/auth/logout" class="btn btn-danger">Log Out</a>
-          <a href="/profile" class="btn branded-btn">Profile</a>
+          <a href="/auth/logout" class="btn btn-danger header-btn">Log Out</a>
+          <a href="/profile" class="btn branded-btn header-btn">Profile</a>
         <% } %>
       </div>
     </div>
