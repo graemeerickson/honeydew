@@ -10,9 +10,11 @@ const logger = require('morgan');
 const passport = require('./config/passportConfig');
 const path = require('path');
 const session = require('express-session');
+const db = require('./models');
 
 // initialize app
 const app = express();
+mongoose.connect("mongodb://localhost/honeydew");
 
 /* error logger, static routes */
 app.use(logger('dev'));
@@ -41,15 +43,16 @@ app.use(function(req, res, next) {
 
 // top-level routes
 app.get('/', (req, res) => {
-  res.render('home');
-});
-
-app.get('/profile', isLoggedIn, (req, res) => {
-  res.render('profile');
+  let userMealPlan = db.MealPlan.find(function (err, meals){
+    // res.json(albums);
+    res.render('home')
+  });
 });
 
 // include any routes from controllers
 app.use('/auth', require('./controllers/auth'));
+app.use('/profile', require('./controllers/profile'));
+app.use('/api/recipes', require('./controllers/recipes'));
 
 /* Error Handling */
 app.get('*', function (req, res) {
