@@ -4,10 +4,14 @@ const NUM_OF_TIME_SLOTS = 28;
 
 var sampleIngredientsArr = [
   {
-    ingredientName: 'apple'
+    ingredientName: 'apple',
+    qty: 1/2,
+    measuringUnit: 'whole'
   },
   {
-    ingredientName: 'orange'
+    ingredientName: 'orange',
+    qty: 2,
+    measuringUnit: 'whole'
   }
 ];
 
@@ -19,30 +23,35 @@ var sampleRecipesArr = [
     recipeName: 'Eggs & Hashbrowns',
     servingSize: 1,
     ingredients: sampleIngredientsArr,
+    prepInstructions: 'Cook hashbrowns at high heat on stovetop. Fry eggs over-easy. Add tobasco.',
     activeCount: 0
   },
   {
     recipeName: 'BLT',
     servingSize: 1,
     ingredients: sampleIngredientsArr,
+    prepInstructions: 'Chop lettuce & tomato. Cook bacon. Toast bread. Spread mayo on bread, and place bacon, lettuce, & tomato.',
     activeCount: 0
   },
   {
     recipeName: 'Chicken Enchiladas',
     servingSize: 1,
     ingredients: sampleIngredientsArr,
+    prepInstructions: 'Boil chicken. Prep sauce concoction. Spread across six tortillas. Roll and place tortillas in baking pan, then cook in oven at 400 degrees for 45 minutes.',
     activeCount: 0
   },
   {
     recipeName: 'Chicken Pesto Pasta',
     servingSize: 1,
     ingredients: sampleIngredientsArr,
+    prepInstructions: 'Placeholder prep instructions',
     activeCount: 0
   },
   {
     recipeName: 'Molten Lava Chocolate Cake',
     servingSize: 1,
     ingredients: sampleIngredientsArr,
+    prepInstructions: 'Placeholder prep instructions',
     activeCount: 0
   }
 ];
