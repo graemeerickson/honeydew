@@ -1,24 +1,20 @@
 console.log('app.js is running');
-var allRecipes = [];
-var activeRecipes = [];
+var userRecipes = [];
+var userMealPlan = [];
 
 $(document).ready(function() {
-
-  renderHomePage();
-
   $.ajax({
     method: 'GET',
     url: `api/recipes`,
-    success: getAllRecipes,
+    success: getUserDetails,
     error: handleError
   });
 });
 
-function renderRecipeBank() {
-  let html = `<span class="badge badge-pill badge-light">Eggs</span>
-              <span class="badge badge-pill badge-light">BLT</span>
-              <span class="badge badge-pill badge-light">Chili</span>
-              <span class="badge badge-pill badge-light">Molten Chocolate Lava Cake</span><br><br>`
+function getRecipeHtml(recipe) {
+  console.log(recipe);
+  let recipeName = recipe.recipeName;
+  let html = `<span class="badge badge-pill badge-light">${recipeName}</span>`
   return html;
 }
 
@@ -82,29 +78,41 @@ function renderMealPlan() {
   return html;
 }
 
+function getAllRecipesHtml(userRecipes) {
+  return userRecipes.map(getRecipeHtml).join("");
+}
+
+function getMealPlanHtml(userRecipes) {
+  return userMealPlan.map(getMealPlanHtml).join("");
+}
+
 function renderHomePage () {
   var recipeBank = $('#recipeBank');
   var mealPlan = $('#mealPlanCalendar');
-  // empty existing mealplan from view
+  
+  // empty existing recipe bank and mealplan from view
   recipeBank.empty();
   mealPlan.empty();
 
-  // pass `allTodos` into the template function
-  // let albumHtml = getAllAlbumsHtml(allAlbums);
+  // pass userRecipes into the template function
+  let userRecipesHtml = getAllRecipesHtml(userRecipes);
+
+  // pass userMealPlan into the template function
+  // let userMealPlanHtml = getMealPlanHtml(userMealPlan);
 
   // append html to the view
-  // mealPlan.append(albumHtml);
-  // mealPlan.append(renderHomePage);
-  recipeBank.append(renderRecipeBank);
+  recipeBank.append(userRecipesHtml);
   mealPlan.append(renderMealPlan);
   
   // setEventListeners();
 };
 
-function getAllRecipes(json) {
-  console.log(typeof json[0].recipes);
-  allRecipes = json[0].recipes;
-  console.log('allRecipes:', allRecipes);
+function getUserDetails(json) {
+  userRecipes = json[0].recipes;
+  userMealPlan = json[0].mealPlan;
+  console.log("User's recipes:", userRecipes);
+  console.log("User's meal plan:", userMealPlan);
+  renderHomePage();
 }
 
 function handleError() {
