@@ -1,15 +1,15 @@
     <div class="row">
-      <div class="col-3">
+      <div class="col-5">
         <a href="/"><img class="logo" src="/images/honeydew_logo_inverted.png"></a>
         <a href="/"><h2 class="logo-text">honeydew</h2></a>
       </div>
-      <div class="col-9 text-right">
+      <div class="col-7 text-right">
         <% if(!currentUser) {%>
           <a href="/auth/login" class="btn btn-primary header-btn">Log In</a>
-          <a href="/auth/signup" class="btn btn-success header-btn">Sign Up</a>
+          <a href="/auth/signup" class="btn header-btn branded-btn">Sign Up</a>
         <% } else { %>
           <a href="/auth/logout" class="btn btn-outline-secondary header-btn">Log Out</a>
-          <a href="/profile" class="btn branded-btn header-btn">Profile</a>
+          <a href="/profile" class="btn header-btn branded-btn">Profile</a>
         <% } %>
       </div>
     </div>
