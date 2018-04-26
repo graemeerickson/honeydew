@@ -2,50 +2,53 @@
 var db = require("./models");
 const NUM_OF_TIME_SLOTS = 28;
 
+var sampleIngredientsArr = [
+  {
+    ingredientName: 'apple'
+  },
+  {
+    ingredientName: 'orange'
+  }
+];
+
+console.log('sampleIngredientsArr:', sampleIngredientsArr)
+
 // POPULATE RECIPES
-var sampleRecipes = [];
+var sampleRecipesArr = [
+  {
+    recipeName: 'recipeName 0',
+    servingSize: 1,
+    ingredients: sampleIngredientsArr,
+    activeCount: 0
+  },
+  {
+    recipeName: 'recipeName 1',
+    servingSize: 1,
+    ingredients: sampleIngredientsArr,
+    activeCount: 0
+  },
+  {
+    recipeName: 'recipeName 2',
+    servingSize: 1,
+    ingredients: sampleIngredientsArr,
+    activeCount: 0
+  }
+];
 
-sampleRecipes.push({ recipeName: 'breakfastRecipe' });
-sampleRecipes.push({ recipeName: 'lunchRecipe' });
-sampleRecipes.push({ recipeName: 'dinnerRecipe' });
-
-// var sampleIngredients = 'apple';
-
-sampleRecipes.forEach( (recipe) => {
-  recipe.servingSize = 1,
-  recipe.ingredients = ['apple', 'orange'],
-  recipe.activeCount = 0
-});
-
-console.log('sampleRecipes:', sampleRecipes);
+console.log('sampleRecipesArr:', sampleRecipesArr);
 
 // POPULATE MEALPLAN
-var mealPlan = [];
+var mealPlanArr = [];
 for (let i = 0; i < NUM_OF_TIME_SLOTS; i++) {
-  mealPlan.push('');
+  mealPlanArr.push('');
 }
 
-console.log('mealPlan:', mealPlan);
+console.log('mealPlan:', mealPlanArr);
 
-db.User.findOneAndUpdate({ _id: '5adfc0b829ea87c828775298'}, { recipes: {}, mealPlan: [] }, function(err, user) {
+// POPULATE USER RECORD WITH RECIPES AND MEALPLAN
+db.User.findOneAndUpdate({ _id: '5adfc0b829ea87c828775298'}, { recipes: sampleRecipesArr, mealPlan: mealPlanArr }, function(err, user) {
+  console.log('hello');
   if (err) return console.log('err:', err);
-  console.log('entered findOneAndUpdate to remove');
-})
-
-// POPULATE USER RECORD WITH RECIPE IDs
-db.User.findOneAndUpdate({ _id: '5adfc0b829ea87c828775298'}, { recipes: {sampleRecipes}, mealPlan: mealPlan }, function(err, user) {
-  if (err) return console.log('err:', err);
-  console.log('entered findOneAndUpdate');
 });
 
-// REMOVE EXISTING MEAL PLAN AND CREATE NEW ONE
-// db.MealPlan.remove({}, function(err, mealPlan){
-
-//   db.MealPlan.create(sampleMealPlan, function(err, mealPlan){
-//     if (err) { return console.log('ERROR', err); }
-//     console.log("all mealPlans:", mealPlan);
-//     console.log("created", mealPlan.length, "mealPlan");
-//     process.exit();
-//   });
-
-// });
+// process.exit();
