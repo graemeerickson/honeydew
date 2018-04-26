@@ -4,15 +4,15 @@ const passport = require('../config/passportConfig');
 const router = express.Router();
 
 // include the user and recipe models
-const User = require('../models');
 const db = require('../models');
 
 // get all of the user's recipes
 router.get('/', isLoggedIn, (req, res) => {
   // find user's recipe list
-  const userRecipes = db.Recipe.find()
-  res.json(userRecipes);
-})
+  const user = db.User.find({ _id: res.locals.currentUser}, function (err, user) {
+    res.json(user);
+  })
+});
 
 // create a new recipe belonging to the user
 router.post('/', isLoggedIn, (req, res) => {
