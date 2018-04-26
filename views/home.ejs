@@ -17,79 +17,78 @@
             </button>
           </div>
 
-
           <form method="POST" action="/api/recipes">
             <div class="container">
-            <div class="modal-body">
-              <div class="form-group" id="recipeNameGroup">
-                <div class="row text-left">
-                  <label for="recipeNameInput">Recipe name</label>
-                  <input type="text" class="form-control" id="recipeNameInput">
-                </div>
-              </div>
-              <div class="form-group" id="ingredientsGroup">
-                <div class="row">
-                  <label for="ingredientsLabel">Ingredients</label>
-                </div>
-                <div class="row text-left">
-                  <div class="col-7">
-                    <label for="ingredientItemInput">Item</label>
-                  </div>
-                  <div class="col-2">
-                    <label for="ingredientQtyInput">Qty</label>
-                  </div>
-                  <div class="col-3">
-                    <label for="ingredientMeasuringUnitSelect">Meas. Unit</label>
+              <div class="modal-body">
+                <div class="form-group" id="recipeNameGroup">
+                  <div class="row text-left">
+                    <label for="recipeNameInput">Recipe name</label>
+                    <input type="text" class="form-control" id="recipeNameInput" name="recipeNameInput">
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-7">
-                    <input type="text" class="form-control" id="ingredientItemInput">
+                <div class="form-group" id="ingredientsGroup">
+                  <div class="row">
+                    <label for="ingredientsLabel">Ingredients</label>
                   </div>
-                  <div class="col-2">
-                    <input type="text" class="form-control" id="ingredientQtyInput">
+                  <div class="row text-left">
+                    <div class="col-2">
+                      <label for="ingredientQtyInput">Qty</label>
+                    </div>
+                    <div class="col-3">
+                      <label for="ingredientMeasuringUnitSelect">Meas. Unit</label>
+                    </div>
+                    <div class="col-7">
+                      <label for="ingredientItemInput">Item</label>
+                    </div>
                   </div>
-                  <div class="col-3">
-                    <select class="form-control" id="ingredientMeasuringUnitSelect">
-                      <option>cup</option>
-                      <option>fl oz</option>
-                      <option>g</option>
-                      <option>gallon</option>
-                      <option>kg</option>
-                      <option>l</option>
-                      <option>lb</option>
-                      <option>mg</option>
-                      <option>ml</option>
-                      <option>oz</option>
-                      <option>pint</option>
-                      <option>quart</option>
-                      <option>tbs</option>
-                      <option>tsp</option>
+                  <div class="row">
+                    <div class="col-2">
+                      <input type="text" class="form-control" id="ingredientQtyInput" name="ingredientQtyInput">
+                    </div>
+                    <div class="col-3">
+                      <select class="form-control" id="ingredientMeasuringUnitSelect" name="ingredientMeasuringUnitSelect">
+                        <option>cup</option>
+                        <option>fl oz</option>
+                        <option>g</option>
+                        <option>gallon</option>
+                        <option>kg</option>
+                        <option>l</option>
+                        <option>lb</option>
+                        <option>mg</option>
+                        <option>ml</option>
+                        <option>oz</option>
+                        <option>pint</option>
+                        <option>quart</option>
+                        <option>tbs</option>
+                        <option>tsp</option>
+                        <option>whole</option>
+                      </select>
+                    </div>
+                    <div class="col-7">
+                      <input type="text" class="form-control" id="ingredientItemInput" name="ingredientItemInput">
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" id="prepInstructionsGroup">
+                  <div class="row text-left">
+                    <label for="prepInstructionsInput">Prep instructions</label>
+                    <textarea class="form-control" id="prepInstructionsTextArea" rows="3"  name="prepInstructionsTextArea"></textarea>
+                  </div>
+                </div>
+                <div class="form-group" id="servingSizeGroup">
+                  <div class="row text-left">
+                    <label for="servingSizeSelect">Serving size</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select class="form-control-sm" id="servingSizeSelect" name="servingSizeSelect">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
                     </select>
                   </div>
                 </div>
               </div>
-              <div class="form-group" id="prepInstructionsGroup">
-                <div class="row text-left">
-                  <label for="prepInstructionsInput">Prep instructions</label>
-                  <textarea class="form-control" id="prepInstructionsInput" rows="3"></textarea>
-                </div>
+              <div class="modal-footer">
+                <input type="submit" class="btn btn-primary" id="saveRecipeBtn" value="Save recipe">
               </div>
-              <div class="form-group" id="servingSizeGroup">
-                <div class="row text-left">
-                  <label for="servingSizeSelect">Serving size</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                  <select class="form-control-sm" id="servingSizeSelect">
-                    <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <input type="submit" class="btn btn-primary" id="saveRecipeBtn" value="Save recipe">
-            </div>
-            </div>
+            </div> <!-- close container -->
           </form>
-
 
         </div>
       </div>
