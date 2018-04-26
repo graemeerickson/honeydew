@@ -2,6 +2,9 @@ body {
   color: #2E197E;
   font-family: 'Roboto', sans-serif;
 }
+a:hover {
+  text-decoration: none;
+}
 table.table-bordered {
   border: 1px solid black;
 }
@@ -22,12 +25,17 @@ span {
   margin-top: 20px;
   width: 64px;
 }
+.logo-text {
+  color: #2E197E;
+  display: inline;
+  vertical-align: bottom;
+}
 .header-btn {
   margin-top: 45px;
 }
 .branded-btn {
   background-color: #D1E681;
-  color: black;
+  color: #2E197E;
 }
 .badge {
   height: 20px;
