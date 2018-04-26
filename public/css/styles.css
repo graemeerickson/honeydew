@@ -40,7 +40,7 @@ span .badge {
 .badge {
   /*background-color: #a6a6a6;*/
   /*background-color: #6D747C;*/
-  cursor: pointer;
+  cursor: move;
   height: 20px;
 }
 .badge-outline {
@@ -55,4 +55,28 @@ span .badge {
 }
 .mobileDay {
   background-color: #F5F5F5;
+}
+.entry:not(:first-of-type) {
+  margin-top: 10px;
+}
+
+.glyphicon {
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 414px) {
+  .logo {
+    height: 32px;
+    margin-top: 20px;
+    width: 32px;
+  }
+  .logo-text {
+    color: #a6a6a6;
+    display: inline;
+    vertical-align: bottom;
+    font-size: 20px;
+  }
+  .header-btn {
+    margin-top: 22px;
+  }
 }
