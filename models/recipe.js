@@ -6,6 +6,7 @@ const recipeSchema = new Schema({
   recipeName: String,
   servingSize: Number,
   ingredients: [ Ingredient.schema ],
+  prepInstructions: String,
   activeCount: Number
 });
 
