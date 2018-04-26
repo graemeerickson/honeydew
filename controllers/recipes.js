@@ -16,9 +16,16 @@ router.get('/', isLoggedIn, (req, res) => {
 
 // create a new recipe belonging to the user
 router.post('/', isLoggedIn, (req, res) => {
-  // create user recipe
+  // create new ingredients object
+  console.log(req.body);
+  // create new recipes object, incl ingredients
+  // redirect to homepage
+
   // db.User.find()
   // res.json(userRecipes);
+  console.log('got to recipes POST backend route');
+  res.send('got to recipes POST backend route');
+  res.json()
 })
 
 // allow other files to access the routes defined here
