@@ -43,10 +43,7 @@ app.use(function(req, res, next) {
 
 // top-level routes
 app.get('/', (req, res) => {
-  let userMealPlan = db.MealPlan.find(function (err, meals){
-    // res.json(albums);
     res.render('home')
-  });
 });
 
 // include any routes from controllers
