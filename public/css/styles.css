@@ -1,24 +1,24 @@
 body {
-  color: #2E197E;
+  color: black;
   font-family: 'Roboto', sans-serif;
 }
 a:hover {
   text-decoration: none;
 }
 table.table-bordered {
-  border: 1px solid black;
+  border: 1px solid #6D747C;
 }
 table.table-bordered > thead > tr > th {
-  border: 1px solid black;
+  border: 1px solid #6D747C;
 }
 table.table-bordered > tbody > tr > th {
-  border: 1px solid black;
+  border: 1px solid #6D747C;
 }
 table.table-bordered > tbody > tr > td {
-  border: 1px solid black;
+  border: 1px solid #6D747C;
 }
-span {
-  font-size: 24px;
+span .badge {
+  font-size: 124px;
 }
 .logo {
   height: 64px;
@@ -26,7 +26,7 @@ span {
   width: 64px;
 }
 .logo-text {
-  color: #2E197E;
+  color: #a6a6a6;
   display: inline;
   vertical-align: bottom;
 }
@@ -38,5 +38,21 @@ span {
   color: #2E197E;
 }
 .badge {
+  /*background-color: #a6a6a6;*/
+  /*background-color: #6D747C;*/
+  cursor: pointer;
   height: 20px;
+}
+.badge-outline {
+  background-color: transparent;
+  border: 1px solid #6D747C;
+  color: #6D747C;
+}
+.badge-outline:hover {
+  background-color: #6D747C;
+  border: 1px solid #6D747C;
+  color: white;
+}
+.mobileDay {
+  background-color: #F5F5F5;
 }
