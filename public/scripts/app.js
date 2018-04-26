@@ -8,7 +8,7 @@ $(document).ready(function() {
 
   $.ajax({
     method: 'GET',
-    url: '/api/recipes',
+    url: `api/recipes`,
     success: getAllRecipes,
     error: handleError
   });
@@ -102,7 +102,8 @@ function renderHomePage () {
 };
 
 function getAllRecipes(json) {
-  allRecipes = json;
+  console.log(typeof json[0].recipes);
+  allRecipes = json[0].recipes;
   console.log('allRecipes:', allRecipes);
 }
 
