@@ -12,13 +12,12 @@ $(document).ready(function() {
 });
 
 function getRecipeHtml(recipe) {
-  console.log(recipe);
   let recipeName = recipe.recipeName;
   let html = `<span class="badge badge-pill badge-light">${recipeName}</span>`
   return html;
 }
 
-function renderMealPlan() {
+function getMealPlanHtml(userMealPlan) {
   let html = `<table class="table table-bordered">
                 <thead>
                   <tr>
@@ -34,47 +33,47 @@ function renderMealPlan() {
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row">Breakfast</th>
-                    <td>Eggs</td>
-                    <td>Eggs</td>
-                    <td>Eggs</td>
-                    <td>Eggs</td>
-                    <td>Eggs</td>
-                    <td>Eggs</td>
-                    <td>Eggs</td>
+                    <th scope="row" id="breakfastRow">Breakfast</th>
+                    <td>${userMealPlan[0]}</td>
+                    <td>${userMealPlan[1]}</td>
+                    <td>${userMealPlan[2]}</td>
+                    <td>${userMealPlan[3]}</td>
+                    <td>${userMealPlan[4]}</td>
+                    <td>${userMealPlan[5]}</td>
+                    <td>${userMealPlan[6]}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Lunch</th>
-                    <td>BLT</td>
-                    <td>BLT</td>
-                    <td>BLT</td>
-                    <td>BLT</td>
-                    <td>BLT</td>
-                    <td>BLT</td>
-                    <td>BLT</td>
+                    <th scope="row" id="lunchRow">Lunch</th>
+                    <td>${userMealPlan[7]}</td>
+                    <td>${userMealPlan[8]}</td>
+                    <td>${userMealPlan[9]}</td>
+                    <td>${userMealPlan[10]}</td>
+                    <td>${userMealPlan[11]}</td>
+                    <td>${userMealPlan[12]}</td>
+                    <td>${userMealPlan[13]}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Dinner</th>
-                    <td>Chili</td>
-                    <td>Chili</td>
-                    <td>Chili</td>
-                    <td>Chili</td>
-                    <td>Chili</td>
-                    <td>Chili</td>
-                    <td>Chili</td>
+                    <th scope="row" id="dinnerRow">Dinner</th>
+                    <td>${userMealPlan[14]}</td>
+                    <td>${userMealPlan[15]}</td>
+                    <td>${userMealPlan[16]}</td>
+                    <td>${userMealPlan[17]}</td>
+                    <td>${userMealPlan[18]}</td>
+                    <td>${userMealPlan[19]}</td>
+                    <td>${userMealPlan[20]}</td>
                   </tr>
                   <tr>
-                    <th scope="row">Dessert</th>
-                    <td>Molten Chocolate Lava Cake</td>
-                    <td>Molten Chocolate Lava Cake</td>
-                    <td>Molten Chocolate Lava Cake</td>
-                    <td>Molten Chocolate Lava Cake</td>
-                    <td>Molten Chocolate Lava Cake</td>
-                    <td>Molten Chocolate Lava Cake</td>
-                    <td>Molten Chocolate Lava Cake</td>
+                    <th scope="row" id="dessertRow">Dessert</th>
+                    <td>${userMealPlan[21]}</td>
+                    <td>${userMealPlan[22]}</td>
+                    <td>${userMealPlan[23]}</td>
+                    <td>${userMealPlan[24]}</td>
+                    <td>${userMealPlan[25]}</td>
+                    <td>${userMealPlan[26]}</td>
+                    <td>${userMealPlan[27]}</td>
                   </tr>
                 </tbody>
-            </table>`
+              </table>`
   return html;
 }
 
@@ -82,27 +81,23 @@ function getAllRecipesHtml(userRecipes) {
   return userRecipes.map(getRecipeHtml).join("");
 }
 
-function getMealPlanHtml(userRecipes) {
-  return userMealPlan.map(getMealPlanHtml).join("");
-}
-
 function renderHomePage () {
-  var recipeBank = $('#recipeBank');
-  var mealPlan = $('#mealPlanCalendar');
+  var recipeBankDiv = $('#recipeBank');
+  var mealPlanDiv = $('#mealPlanCalendar');
   
   // empty existing recipe bank and mealplan from view
-  recipeBank.empty();
-  mealPlan.empty();
+  recipeBankDiv.empty();
+  mealPlanDiv.empty();
 
   // pass userRecipes into the template function
   let userRecipesHtml = getAllRecipesHtml(userRecipes);
 
   // pass userMealPlan into the template function
-  // let userMealPlanHtml = getMealPlanHtml(userMealPlan);
+  let userMealPlanHtml = getMealPlanHtml(userMealPlan);
 
   // append html to the view
-  recipeBank.append(userRecipesHtml);
-  mealPlan.append(renderMealPlan);
+  recipeBankDiv.append(userRecipesHtml);
+  mealPlanDiv.append(userMealPlanHtml);
   
   // setEventListeners();
 };
