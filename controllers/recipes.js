@@ -66,7 +66,7 @@ router.post('/', isLoggedIn, (req, res) => {
       if (err) {
         console.log('Error adding new recipe to user db record', err);
       };
-      res.render('home');
+      res.redirect('/');
   });
   // create new recipes object, incl ingredients
   // redirect to homepage
