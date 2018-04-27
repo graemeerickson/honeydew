@@ -1,0 +1,19 @@
+<h1>Grocery List</h1>
+<p>Your grocery list contains ingredients from the recipes in your week's meal plan.</p>
+
+<ul>
+  <% userRecipes.forEach( (recipe) => { %>
+  <%   if (recipe.activeCount === 0) { %>
+  <%    recipe.ingredients.forEach( (ingredient) => { %>
+          <li> <%= ingredient.ingredientName %>&nbsp;(<%= ingredient.qty %> <%= ingredient.measuringUnit %>)</li>
+  <%    }) %>
+  <%   } else {} %>
+  <% }) %>
+</ul>
+<!--
+User: Object                 <- userRecipes
+  recipes: Array
+    recipe: Object
+      ingredients: Array
+        ingredient: Object
+  -->
