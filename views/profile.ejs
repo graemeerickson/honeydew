@@ -45,7 +45,7 @@
 <%   } %>
 <% }) %>
 <!-- insert final closing row div if the meal type array doesn't end at the end of a row -->
-<% if (breakfastRecipes.length % 3 !== 0) { %>
+<% if (breakfastRecipes.length % 4 !== 0) { %>
      </div> <!-- end of row -->
 <% } %>
 <hr>
@@ -94,7 +94,7 @@
 <%   } %>
 <% }) %>
 <!-- insert final closing row div if the meal type array doesn't end at the end of a row -->
-<% if (lunchRecipes.length % 3 !== 0) { %>
+<% if (lunchRecipes.length % 4 !== 0) { %>
      </div> <!-- end of row -->
 <% } %>
 <hr>
@@ -143,7 +143,7 @@
 <%   } %>
 <% }) %>
 <!-- insert final closing row div if the meal type array doesn't end at the end of a row -->
-<% if (dinnerRecipes.length % 3 !== 0) { %>
+<% if (dinnerRecipes.length % 4 !== 0) { %>
      </div> <!-- end of row -->
 <% } %>
 <hr>
@@ -177,7 +177,7 @@
              </div>
            </div>
          </div>
-       </div> <!-- end of row -->
+       </div><br> <!-- end of row -->
 <%   } else {  %> <!-- recipe in middle of row -->
          <div class="col-md-auto col-12">
            <div class="card" style="width: 18rem;">
@@ -192,6 +192,6 @@
 <%   } %>
 <% }) %>
 <!-- insert final closing row div if the meal type array doesn't end at the end of a row -->
-<% if (dessertRecipes.length % 3 !== 0) { %>
+<% if (dessertRecipes.length % 4 !== 0) { %>
      </div> <!-- end of row -->
 <% } %>
