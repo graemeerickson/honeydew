@@ -20,40 +20,32 @@ router.post('/', isLoggedIn, (req, res) => {
   // create new ingredients object
   console.log('req.body:', req.body);
   
-  // req:
-    // { recipeNameInput: 'first recipe',
-    // ingredientQtyInput: '1',
-    // ingredientMeasuringUnitSelect: 'cup',
-    // ingredientItemInput: 'sugar',
-    // prepInstructionsTextArea: 'prep',
-    // servingSizeSelect: '1' }
-
   // convert entered strings into arrays
   // let ingredientItemArr = req.body.ingredientItemInput.split(',');
   // let ingredientQtyArr = req.body.ingredientQtyInput.split(',');
   // let ingredientMeasuringUnitArr = req.body.ingredientMeasuringUnitSelect.split(',');
   let ingredientItemArr = [];
   ingredientItemArr.push(req.body.ingredientItemInput);
-  
   let ingredientQtyArr = [];
   ingredientQtyArr.push(req.body.ingredientQtyInput);
-
   let ingredientMeasuringUnitArr = [];
   ingredientMeasuringUnitArr.push(req.body.ingredientMeasuringUnitSelect);
 
+  console.log('ingredientItemArr:', ingredientItemArr);
+  console.log('ingredientQtyArr:', ingredientQtyArr);
+  console.log('ingredientMeasuringUnitArr:', ingredientMeasuringUnitArr);
+
   let ingredientsArr = [];
-  
   for (let i = 0; i < ingredientItemArr.length; i++) {
     let tmpIngredientObj = {};
-    tmpIngredientObj.ingredientName = req.body.ingredientItemInput[i];
-    tmpIngredientObj.qty = req.body.ingredientQtyInput[i];
-    tmpIngredientObj.measuringUnit = req.body.ingredientMeasuringUnitSelect[i];
+    tmpIngredientObj.ingredientName = ingredientItemArr[i];
+    tmpIngredientObj.qty = ingredientQtyArr[i];
+    tmpIngredientObj.measuringUnit = ingredientMeasuringUnitArr[i];
     ingredientsArr.push(tmpIngredientObj);
   }
-
   console.log('ingredientsArr:', ingredientsArr);
 
-  let newRecipe = new db.Recipe({ recipeName: req.body.recipeNameInput, servingSize: req.body.servingSizeSelect, ingredients: ingredientsArr, prepInstructions: req.body.prepInstructionsTextArea, activeCount: 0 })
+  let newRecipe = new db.Recipe({ recipeName: req.body.recipeNameInput, servingSize: req.body.servingSizeSelect, ingredients: ingredientsArr, prepInstructions: req.body.prepInstructionsTextArea, prepTime: req.body.prepTimeInput, cookTime: req.body.cookTimeInput, mealType: req.body.mealTypeSelect, imgUrl: '', activeCount: 0 })
   newRecipe.save();
   console.log('newRecipe:', newRecipe);
 
