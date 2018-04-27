@@ -1,19 +1,31 @@
-console.log('app.js is running');
 var userRecipes = [];
 var userMealPlan = [];
+var userId;
+var editRecipeId;
 
 $(document).ready(function() {
   $.ajax({
     method: 'GET',
-    url: `api/recipes`,
+    url: `/api/recipes`,
     success: getUserDetails,
     error: handleError
   });
+
+  $('.editRecipeBtn').on('click',function(e) {
+    console.log($(this).data().id);
+    e.preventDefault;
+    console.log('Recipe Id:', $(this).data().id);
+    $.ajax({
+      method: 'POST',
+      url: '/profile/editRecipe',
+      data: $(this).data(),
+    })
+  })
 });
 
 function getRecipeHtml(recipe) {
   let recipeName = recipe.recipeName;
-  let html = `<span class="badge badge-pill badge-outline">${recipeName}</span>&nbsp;`
+  let html = `<div class="draggableRecipe" style="display: inline;"><span class="badge badge-pill badge-outline">${recipeName}</span></div>&nbsp`
   return html;
 }
 
@@ -74,7 +86,7 @@ function getMealPlanHtml(userMealPlan) {
                           <td>${userMealPlan[27]}</td>
                         </tr>
                       </tbody>
-                    </table>`
+                    </table>`;
   let htmlMobile = `<table class="table table-bordered">
                       <tbody>
                         <tr>
@@ -211,7 +223,7 @@ function getMealPlanHtml(userMealPlan) {
                           <td>${userMealPlan[27]}</td>
                         </tr>
                       </tbody>
-                    </table>`
+                    </table>`;
   if (screenWidth > 414) {
     return htmlDesktop;
   } else {
@@ -240,6 +252,8 @@ function renderHomePage () {
   // append html to the view
   recipeBankDiv.append(userRecipesHtml);
   mealPlanDiv.append(userMealPlanHtml);
+
+  // $(function() { $('.draggableRecipe').draggable(); });
   
   // setEventListeners();
 };
@@ -247,10 +261,29 @@ function renderHomePage () {
 function getUserDetails(json) {
   userRecipes = json[0].recipes;
   userMealPlan = json[0].mealPlan;
-  console.log("User's recipes:", userRecipes);
-  console.log("User's meal plan:", userMealPlan);
+  userId = json[0]._id;
   renderHomePage();
 }
+
+// $(function() {
+//     $(document).on('click', '.btn-add', function(e) {
+//         e.preventDefault();
+
+//         var controlForm = $('.controls form:first'),
+//             currentEntry = $(this).parents('.entry:first'),
+//             newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+//         newEntry.find('input').val('');
+//         controlForm.find('.entry:not(:last) .btn-add')
+//             .removeClass('btn-add').addClass('btn-remove')
+//             .removeClass('btn-success').addClass('btn-danger')
+//             .html('<span class="glyphicon glyphicon-minus"></span>');
+//     }).on('click', '.btn-remove', function(e) {
+//       $(this).parents('.entry:first').remove();
+//       e.preventDefault();
+//       return false;
+//     });
+// });
 
 function handleError() {
   console.log('handleError');
