@@ -1,7 +1,10 @@
+const cloudinary = require('cloudinary');
 const express = require('express');
 const isLoggedIn = require('../middleware/isLoggedIn');
+const multer = require('multer');
 const passport = require('../config/passportConfig');
 const router = express.Router();
+const upload = multer({ dest: './uploads/' });
 
 // include the user and recipe models
 const db = require('../models');
@@ -15,11 +18,12 @@ router.get('/', isLoggedIn, (req, res) => {
 });
 
 // create a new recipe belonging to the user
-router.post('/', isLoggedIn, (req, res) => {
-  console.log('got to recipes POST backend route');
-  // create new ingredients object
+router.post('/', isLoggedIn, upload.single('myFile'), (req, res) => {
   console.log('req.body:', req.body);
+  console.log('req.file:', req.file);
   
+
+  // create new ingredients object
   // convert entered strings into arrays
   // let ingredientItemArr = req.body.ingredientItemInput.split(',');
   // let ingredientQtyArr = req.body.ingredientQtyInput.split(',');
@@ -48,6 +52,14 @@ router.post('/', isLoggedIn, (req, res) => {
   let newRecipe = new db.Recipe({ recipeName: req.body.recipeNameInput, servingSize: req.body.servingSizeSelect, ingredients: ingredientsArr, prepInstructions: req.body.prepInstructionsTextArea, prepTime: req.body.prepTimeInput, cookTime: req.body.cookTimeInput, mealType: req.body.mealTypeSelect, imgUrl: '', activeCount: 0 })
   newRecipe.save();
   console.log('newRecipe:', newRecipe);
+
+  cloudinary.uploader.upload(req.file.path, function(result) {
+    console.log('running cloudinary uploader');
+    newRecipe.imgUrl = result.url;
+  });
+  
+  console.log('newRecipe after cloudinary result:', newRecipe);
+  // console.log('cloudinaryResult:', cloudinaryResult);
 
   // let albumId = req.params.album_id.slice(1, req.params.album_id.length);
   db.User.findByIdAndUpdate(
