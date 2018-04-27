@@ -17,7 +17,7 @@ const upload = multer({ dest: './uploads/' });
 
 // initialize app
 const app = express();
-mongoose.connect("mongodb://localhost/honeydew");
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/honeydew');
 
 /* error logger, static routes */
 app.use(logger('dev'));
