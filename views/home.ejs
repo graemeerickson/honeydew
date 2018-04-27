@@ -5,6 +5,9 @@
 </div>
 <div class="row">
   <div class="col-12 text-right">
+    <button type="button" class="btn branded-btn" data-toggle="modal" data-target="#newRecipeModal" id="newRecipeBtn">Add new recipe</button>
+  </div>
+</div>
   
 <!-- NEW RECIPE MODAL -->
     <div class="modal fade" id="newRecipeModal" tabindex="-1" role="dialog">
@@ -17,17 +20,17 @@
             </button>
           </div>
 
-          <form method="POST" action="/api/recipes">
+          <form enctype="multipart/form-data" method="POST" action="/api/recipes">
             <div class="container">
               <div class="modal-body">
                 <div class="form-group" id="recipeNameGroup">
-                  <div class="row text-left">
+                  <div class="row">
                     <label for="recipeNameInput">Recipe name</label>
                     <input type="text" class="form-control" id="recipeNameInput" name="recipeNameInput">
                   </div>
                 </div>
                 <div class="form-group" id="mealTypeGroup">
-                  <div class="row text-left">
+                  <div class="row">
                     <label for="mealTypeSelect">Meal type</label>
                     <select class="form-control" id="mealTypeSelect" name="mealTypeSelect">
                       <option>Breakfast</option>
@@ -81,29 +84,34 @@
                   </div>
                 </div>
                 <div class="form-group" id="prepInstructionsGroup">
-                  <div class="row text-left">
+                  <div class="row">
                     <label for="prepInstructionsInput">Prep instructions</label>
                     <textarea class="form-control" id="prepInstructionsTextArea" rows="3"  name="prepInstructionsTextArea"></textarea>
                   </div>
                 </div>
                 <div class="form-group" id="prepTimeGroup">
-                  <div class="row text-left">
+                  <div class="row">
                     <label for="prepTimeInput">Prep time</label>
                     <input type="text" class="form-control" id="prepTimeInput" name="prepTimeInput" placeholder="10 minutes">
                   </div>
                 </div>
                 <div class="form-group" id="cookTimeGroup">
-                  <div class="row text-left">
+                  <div class="row">
                     <label for="cookTimeInput">Cook time</label>
                     <input type="text" class="form-control" id="cookTimeInput" name="cookTimeInput" placeholder="15 minutes">
                   </div>
                 </div>
                 <div class="form-group" id="servingSizeGroup">
-                  <div class="row text-left">
+                  <div class="row">
                     <label for="servingSizeSelect">Serving size</label>&nbsp;&nbsp;&nbsp;&nbsp;
                     <select class="form-control-sm" id="servingSizeSelect" name="servingSizeSelect">
                       <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
                     </select>
+                  </div>
+                </div>
+                <div class="form-group" id="imageGroup">
+                  <div class="row">
+                    <input type="file" id="myFile" name="myFile">
                   </div>
                 </div>
               </div>
@@ -115,12 +123,9 @@
 
         </div>
       </div>
-    </div>
-    <button type="button" class="btn branded-btn" data-toggle="modal" data-target="#newRecipeModal" id="newRecipeBtn">Add new recipe</button>
-  </div>
-</div>
+    </div> <!-- end modal -->
+    
 <br>
-
 <!-- MEALPLAN CALENDAR -->
 <div class="row">
   <div class="col-12">
