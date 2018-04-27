@@ -7,6 +7,10 @@ const recipeSchema = new Schema({
   servingSize: Number,
   ingredients: [ Ingredient.schema ],
   prepInstructions: String,
+  prepTime: String,
+  cookTime: String,
+  mealType: String,
+  imgUrl: String,
   activeCount: Number
 });
 
