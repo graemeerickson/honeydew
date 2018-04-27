@@ -11,6 +11,9 @@ const passport = require('./config/passportConfig');
 const path = require('path');
 const session = require('express-session');
 const db = require('./models');
+const cloudinary = require('cloudinary');
+const multer = require('multer');
+const upload = multer({ dest: './uploads/' });
 
 // initialize app
 const app = express();
@@ -28,7 +31,7 @@ app.use(expressLayouts);
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }));
 app.use(flash());
 app.use(passport.initialize());
@@ -43,13 +46,14 @@ app.use(function(req, res, next) {
 
 // top-level routes
 app.get('/', (req, res) => {
-    res.render('home')
+  res.render('home')
 });
 
 // include any routes from controllers
 app.use('/auth', require('./controllers/auth'));
 app.use('/profile', require('./controllers/profile'));
 app.use('/api/recipes', require('./controllers/recipes'));
+app.use('/grocerylist', require('./controllers/grocerylist'));
 
 /* Error Handling */
 app.get('*', function (req, res) {
