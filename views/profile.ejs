@@ -1,3 +1,109 @@
-<h2><%= currentUser.name %>'s Recipes</h2>
+<h2>My Recipes</h2>
+<hr>
 
-<!-- render user's recipes here ->
+<h4>Breakfast</h4>
+<% let breakfastRecipes = userRecipes.filter( (recipe) => { %>
+<%                          return recipe.mealType === 'Breakfast'; %>
+<% }) %>
+
+<% breakfastRecipes.forEach( (recipe, index) => { %>
+     <!-- start of new row -->
+<%   if (index === 0 || index % 4 === 0) { %>
+       <div class="row"> <!-- start of row -->
+         <div class="col-3">
+           <div class="card" style="width: 18rem;">
+             <img class="card-img-top" src="..." alt="Card image cap">
+             <div class="card-body">
+               <h5 class="card-title"><%= recipe.recipeName %></h5>
+               <p class="card-text">Prep time: <%= recipe.prepTime %><br>Cook time: <%= recipe.cookTime %></p>
+               <a href="#" class="btn btn-primary">Edit recipe</a>
+             </div>
+           </div>
+         </div>
+<%   } %>
+     <!-- end of row --> 
+<%   else if (index % 3 === 0) { %>
+         <div class="col-3">
+           <div class="card" style="width: 18rem;">
+             <img class="card-img-top" src="..." alt="Card image cap">
+             <div class="card-body">
+               <h5 class="card-title"><%= recipe.recipeName %></h5>
+               <p class="card-text">Prep time: 25 minutes</p>
+               <a href="#" class="btn btn-primary">Edit recipe</a>
+             </div>
+           </div>
+         </div>
+       </div> <!-- end of row -->
+<%   } %>
+     <!-- middle of row -->
+<%   else { %>
+         <div class="col-3">
+           <div class="card" style="width: 18rem;">
+             <img class="card-img-top" src="..." alt="Card image cap">
+             <div class="card-body">
+               <h5 class="card-title"><%= recipe.recipeName %></h5>
+               <p class="card-text">Prep time: 25 minutes</p>
+               <a href="#" class="btn btn-primary">Edit recipe</a>
+             </div>
+           </div>
+         </div>
+<%   } %>
+<% }) %>
+</div> <!-- end of row -->
+<hr>
+
+<h4>Lunch</h4>
+<% let lunchRecipes = userRecipes.filter( (recipe) => { %>
+<%                          return recipe.mealType === 'Lunch'; %>
+<% }) %>
+
+<% lunchRecipes.forEach( (recipe) => { %>
+
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%= recipe.recipeName %></h5>
+        <p class="card-text">Prep time: 25 minutes</p>
+        <a href="#" class="btn btn-primary">Edit recipe</a>
+      </div>
+    </div>
+
+<% }) %>
+<hr>
+
+<h4>Dinner</h4>
+<% let dinnerRecipes = userRecipes.filter( (recipe) => { %>
+<%                          return recipe.mealType === 'Dinner'; %>
+<% }) %>
+
+<% dinnerRecipes.forEach( (recipe) => { %>
+
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%= recipe.recipeName %></h5>
+        <p class="card-text">Prep time: 25 minutes</p>
+        <a href="#" class="btn btn-primary">Edit recipe</a>
+      </div>
+    </div>
+
+<% }) %>
+<hr>
+
+<h4>Dessert</h4>
+<% let dessertRecipes = userRecipes.filter( (recipe) => { %>
+<%                          return recipe.mealType === 'Dessert'; %>
+<% }) %>
+
+<% dessertRecipes.forEach( (recipe) => { %>
+
+    <div class="card" style="width: 18rem;">
+      <img class="card-img-top" src="..." alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title"><%= recipe.recipeName %></h5>
+        <p class="card-text">Prep time: 25 minutes</p>
+        <a href="#" class="btn btn-primary">Edit recipe</a>
+      </div>
+    </div>
+
+<% }) %>
