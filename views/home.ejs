@@ -26,6 +26,17 @@
                     <input type="text" class="form-control" id="recipeNameInput" name="recipeNameInput">
                   </div>
                 </div>
+                <div class="form-group" id="mealTypeGroup">
+                  <div class="row text-left">
+                    <label for="mealTypeSelect">Meal type</label>
+                    <select class="form-control" id="mealTypeSelect" name="mealTypeSelect">
+                      <option>Breakfast</option>
+                      <option>Lunch</option>
+                      <option>Dinner</option>
+                      <option>Dessert</option>
+                    </select>
+                  </div>
+                </div>
                 <div class="form-group" id="ingredientsGroup">
                   <div class="row">
                     <label for="ingredientsLabel">Ingredients</label>
@@ -75,6 +86,18 @@
                     <textarea class="form-control" id="prepInstructionsTextArea" rows="3"  name="prepInstructionsTextArea"></textarea>
                   </div>
                 </div>
+                <div class="form-group" id="prepTimeGroup">
+                  <div class="row text-left">
+                    <label for="prepTimeInput">Prep time</label>
+                    <input type="text" class="form-control" id="prepTimeInput" name="prepTimeInput" placeholder="10 minutes">
+                  </div>
+                </div>
+                <div class="form-group" id="cookTimeGroup">
+                  <div class="row text-left">
+                    <label for="cookTimeInput">Cook time</label>
+                    <input type="text" class="form-control" id="cookTimeInput" name="cookTimeInput" placeholder="15 minutes">
+                  </div>
+                </div>
                 <div class="form-group" id="servingSizeGroup">
                   <div class="row text-left">
                     <label for="servingSizeSelect">Serving size</label>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -108,6 +131,6 @@
 <!-- GROCERY LIST -->
 <div class="row">
   <div class="col-12 text-right">
-    <button type="button" class="btn branded-btn">Generate grocery list</button>
+    <a href="/grocerylist"><button type="button" class="btn branded-btn">Generate grocery list</button></a>
   </div>
 </div>
