@@ -24,6 +24,9 @@ var sampleRecipesArr = [
     servingSize: 1,
     ingredients: sampleIngredientsArr,
     prepInstructions: 'Cook hashbrowns at high heat on stovetop. Fry eggs over-easy. Add tobasco.',
+    prepTime: '0 minutes',
+    cookTime: '20 minutes',
+    mealType: 'Breakfast',
     activeCount: 0
   },
   {
@@ -31,6 +34,9 @@ var sampleRecipesArr = [
     servingSize: 1,
     ingredients: sampleIngredientsArr,
     prepInstructions: 'Chop lettuce & tomato. Cook bacon. Toast bread. Spread mayo on bread, and place bacon, lettuce, & tomato.',
+    prepTime: '15 minutes',
+    cookTime: '5 minutes',
+    mealType: 'Lunch',
     activeCount: 0
   },
   {
@@ -38,6 +44,9 @@ var sampleRecipesArr = [
     servingSize: 1,
     ingredients: sampleIngredientsArr,
     prepInstructions: 'Boil chicken. Prep sauce concoction. Spread across six tortillas. Roll and place tortillas in baking pan, then cook in oven at 400 degrees for 45 minutes.',
+    prepTime: '15 minutes',
+    cookTime: '30 minutes',
+    mealType: 'Dinner',
     activeCount: 0
   },
   {
@@ -45,6 +54,9 @@ var sampleRecipesArr = [
     servingSize: 1,
     ingredients: sampleIngredientsArr,
     prepInstructions: 'Placeholder prep instructions',
+    prepTime: '30 minutes',
+    cookTime: '15 minutes',
+    mealType: 'Dinner',
     activeCount: 0
   },
   {
@@ -52,6 +64,9 @@ var sampleRecipesArr = [
     servingSize: 1,
     ingredients: sampleIngredientsArr,
     prepInstructions: 'Placeholder prep instructions',
+    prepTime: '25 minutes',
+    cookTime: '20 minutes',
+    mealType: 'Dessert',
     activeCount: 0
   }
 ];
