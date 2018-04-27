@@ -61,7 +61,7 @@ app.get('*', function (req, res) {
 });
 
 /* Listen on PORT */
-app.set('port', process.env.PORT)
+app.set('port', process.env.PORT || 3001)
 
 app.listen(app.get('port'), () => {
   console.log(`Listening on port: ${app.get('port')}`)
