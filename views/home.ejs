@@ -1,4 +1,7 @@
-<% if(currentUser) {%>
+<% if (!currentUser) {%>
+     <br><h5 class="welcome-message">Honeydew helps you plan meals more effectively. Sign up or log in to get started!</h5>
+<% } else { %>
+
 <!-- RECIPE BANK -->
 <div class="row">
   <div class="col-10" id="recipeBank">
@@ -140,6 +143,4 @@
     <a href="/grocerylist"><button type="button" class="btn branded-btn">Generate grocery list</button></a>
   </div>
 </div>
-<% } else { %>
-<br><h5 class="welcome-message">Honeydew helps you plan meals more effectively. Sign up or log in to get started!</h5>
 <% } %>
