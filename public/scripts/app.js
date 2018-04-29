@@ -14,6 +14,7 @@ $(document).ready(function() {
     error: handleError
   });
 
+  // set event listener on the Edit Recipe buttons on the Profile page
   $('.editRecipeBtn').on('click',function(e) {
     console.log($(this).data().id);
     e.preventDefault;
@@ -21,7 +22,21 @@ $(document).ready(function() {
     $.ajax({
       method: 'POST',
       url: '/profile/editRecipe',
+      data: $(this).data()
+    })
+  })
+
+  // set event listener on the Delete Recipe button on the Edit Recipe page
+  $('#deleteRecipeBtn').on('click',function(e) {
+    console.log($(this));
+    e.preventDefault;
+    console.log('Recipe Id:', $(this).data().id);
+    $.ajax({
+      method: 'DELETE',
+      url: '/profile/editRecipe',
       data: $(this).data(),
+      success: handleSuccess,
+      error: handleError
     })
   })
 });
@@ -257,6 +272,7 @@ function renderHomePage () {
   recipeBankDiv.append(userRecipesHtml);
   mealPlanDiv.append(userMealPlanHtml);
 
+  // event listener on recipes in recipe bank
   $('.badge-pill').on('click', function(e) {
     console.log('selectedRecipeName:', e.target.innerText);
     console.log('selectedRecipeId:', e.target.id);
@@ -264,6 +280,7 @@ function renderHomePage () {
     selectedRecipeId = e.target.id;
   })
 
+  // event listener on meal plan slots to update slot with selected recipe
   $('.mealPlanSlot').on('click', function(e) {
     let userAction = 'single click';
     console.log('selectedMealPlanSlotId:', e.target.id);
@@ -318,29 +335,9 @@ function getUserDetails(json) {
   renderHomePage();
 }
 
-// $(function() {
-//     $(document).on('click', '.btn-add', function(e) {
-//         e.preventDefault();
-
-//         var controlForm = $('.controls form:first'),
-//             currentEntry = $(this).parents('.entry:first'),
-//             newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
-//         newEntry.find('input').val('');
-//         controlForm.find('.entry:not(:last) .btn-add')
-//             .removeClass('btn-add').addClass('btn-remove')
-//             .removeClass('btn-success').addClass('btn-danger')
-//             .html('<span class="glyphicon glyphicon-minus"></span>');
-//     }).on('click', '.btn-remove', function(e) {
-//       $(this).parents('.entry:first').remove();
-//       e.preventDefault();
-//       return false;
-//     });
-// });
-
 function handleSuccess() {
-  console.log('ajax success response')
+  console.log('Ajax success response')
 }
 function handleError() {
-  console.log('ajax error response');
+  console.log('Ajax error response');
 }
