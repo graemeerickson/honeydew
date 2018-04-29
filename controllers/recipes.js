@@ -63,5 +63,33 @@ router.post('/', isLoggedIn, upload.single('myFile'), (req, res) => {
   });
 })
 
+router.put('/', isLoggedIn, (req,res) => {
+  console.log('req.body:', req.body);
+  // update user's recipe - increment or decrement activeCount
+  // db.User.findByIdAndUpdate(
+  //   res.locals.currentUser.id,
+
+  // )
+
+  db.User.findById(res.locals.currentUser.id, function(err, user) {
+    if (err) { console.log("Error finding user in db", err); };
+    console.log('userAction:', req.body.userAction);
+    console.log('mealPlan:', user.mealPlan);
+    console.log('req.body.selectedRecipeName:',req.body.selectedRecipeName);
+    console.log('mealPlan at specified element:', user.mealPlan[req.body.selectedMealPlanSlotId]);
+    if (req.body.userAction === 'single click' && req.body.selectedRecipeName !== undefined) {
+      user.mealPlan.splice(req.body.selectedMealPlanSlotId,1,req.body.selectedRecipeName);
+      user.save();
+      // res.send(`Updated user's mealplan slot #${req.body.selectedMealPlanSlotId} successfully`);
+      res.render('home');
+    } else if (req.body.userAction === 'double click' && req.body.selectedRecipeName == undefined) {
+      user.mealPlan.splice(req.body.selectedMealPlanSlotId,1,"");
+      user.save();
+      // res.send(`Cleared user's mealplan slot #${req.body.selectedMealPlanSlotId} successfully`);
+      res.redirect('home');
+    }
+    // res.send('success');
+  });
+})
 // allow other files to access the routes defined here
 module.exports = router;
