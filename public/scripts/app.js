@@ -2,6 +2,9 @@ var userRecipes = [];
 var userMealPlan = [];
 var userId;
 var editRecipeId;
+var selectedRecipeName;
+var selectedRecipeId;
+var selectedMealPlanSlotId;
 
 $(document).ready(function() {
   $.ajax({
@@ -25,7 +28,8 @@ $(document).ready(function() {
 
 function getRecipeHtml(recipe) {
   let recipeName = recipe.recipeName;
-  let html = `<div class="draggableRecipe" style="display: inline;"><span class="badge badge-pill badge-outline">${recipeName}</span></div>&nbsp`
+  let recipeId = recipe._id;
+  let html = `<span class="badge badge-pill badge-outline" id="${recipeId}">${recipeName}</span>&nbsp`
   return html;
 }
 
@@ -45,45 +49,45 @@ function getMealPlanHtml(userMealPlan) {
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        <tr">
                           <th scope="row" id="breakfastRow">Breakfast</th>
-                          <td>${userMealPlan[0]}</td>
-                          <td>${userMealPlan[1]}</td>
-                          <td>${userMealPlan[2]}</td>
-                          <td>${userMealPlan[3]}</td>
-                          <td>${userMealPlan[4]}</td>
-                          <td>${userMealPlan[5]}</td>
-                          <td>${userMealPlan[6]}</td>
+                          <td class="mealPlanSlot" id="0">${userMealPlan[0]}</td>
+                          <td class="mealPlanSlot" id="1">${userMealPlan[1]}</td>
+                          <td class="mealPlanSlot" id="2">${userMealPlan[2]}</td>
+                          <td class="mealPlanSlot" id="3">${userMealPlan[3]}</td>
+                          <td class="mealPlanSlot" id="4">${userMealPlan[4]}</td>
+                          <td class="mealPlanSlot" id="5">${userMealPlan[5]}</td>
+                          <td class="mealPlanSlot" id="6">${userMealPlan[6]}</td>
                         </tr>
                         <tr>
                           <th scope="row" id="lunchRow">Lunch</th>
-                          <td>${userMealPlan[7]}</td>
-                          <td>${userMealPlan[8]}</td>
-                          <td>${userMealPlan[9]}</td>
-                          <td>${userMealPlan[10]}</td>
-                          <td>${userMealPlan[11]}</td>
-                          <td>${userMealPlan[12]}</td>
-                          <td>${userMealPlan[13]}</td>
+                          <td class="mealPlanSlot" id="7">${userMealPlan[7]}</td>
+                          <td class="mealPlanSlot" id="8">${userMealPlan[8]}</td>
+                          <td class="mealPlanSlot" id="9">${userMealPlan[9]}</td>
+                          <td class="mealPlanSlot" id="10">${userMealPlan[10]}</td>
+                          <td class="mealPlanSlot" id="11">${userMealPlan[11]}</td>
+                          <td class="mealPlanSlot" id="12">${userMealPlan[12]}</td>
+                          <td class="mealPlanSlot" id="13">${userMealPlan[13]}</td>
                         </tr>
                         <tr>
                           <th scope="row" id="dinnerRow">Dinner</th>
-                          <td>${userMealPlan[14]}</td>
-                          <td>${userMealPlan[15]}</td>
-                          <td>${userMealPlan[16]}</td>
-                          <td>${userMealPlan[17]}</td>
-                          <td>${userMealPlan[18]}</td>
-                          <td>${userMealPlan[19]}</td>
-                          <td>${userMealPlan[20]}</td>
+                          <td class="mealPlanSlot" id="14">${userMealPlan[14]}</td>
+                          <td class="mealPlanSlot" id="15">${userMealPlan[15]}</td>
+                          <td class="mealPlanSlot" id="16">${userMealPlan[16]}</td>
+                          <td class="mealPlanSlot" id="17">${userMealPlan[17]}</td>
+                          <td class="mealPlanSlot" id="18">${userMealPlan[18]}</td>
+                          <td class="mealPlanSlot" id="19">${userMealPlan[19]}</td>
+                          <td class="mealPlanSlot" id="20">${userMealPlan[20]}</td>
                         </tr>
                         <tr>
                           <th scope="row" id="dessertRow">Dessert</th>
-                          <td>${userMealPlan[21]}</td>
-                          <td>${userMealPlan[22]}</td>
-                          <td>${userMealPlan[23]}</td>
-                          <td>${userMealPlan[24]}</td>
-                          <td>${userMealPlan[25]}</td>
-                          <td>${userMealPlan[26]}</td>
-                          <td>${userMealPlan[27]}</td>
+                          <td class="mealPlanSlot" id="21">${userMealPlan[21]}</td>
+                          <td class="mealPlanSlot" id="22">${userMealPlan[22]}</td>
+                          <td class="mealPlanSlot" id="23">${userMealPlan[23]}</td>
+                          <td class="mealPlanSlot" id="24">${userMealPlan[24]}</td>
+                          <td class="mealPlanSlot" id="25">${userMealPlan[25]}</td>
+                          <td class="mealPlanSlot" id="26">${userMealPlan[26]}</td>
+                          <td class="mealPlanSlot" id="27">${userMealPlan[27]}</td>
                         </tr>
                       </tbody>
                     </table>`;
@@ -253,9 +257,58 @@ function renderHomePage () {
   recipeBankDiv.append(userRecipesHtml);
   mealPlanDiv.append(userMealPlanHtml);
 
-  // $(function() { $('.draggableRecipe').draggable(); });
-  
-  // setEventListeners();
+  $('.badge-pill').on('click', function(e) {
+    console.log('selectedRecipeName:', e.target.innerText);
+    console.log('selectedRecipeId:', e.target.id);
+    selectedRecipeName = e.target.innerText;
+    selectedRecipeId = e.target.id;
+  })
+
+  $('.mealPlanSlot').on('click', function(e) {
+    let userAction = 'single click';
+    console.log('selectedMealPlanSlotId:', e.target.id);
+    console.log('selectedMealPlanSlotExistingRecipe:', e.target.innerText);
+    selectedMealPlanSlotId = e.target.id;
+    selectedMealPlanSlotExistingRecipe = e.target.innerText;
+
+    // update mealplan slot in UI if a recipe has been selected
+    if (selectedRecipeId !== undefined) {
+      e.target.innerText = selectedRecipeName;
+      e.target.id = selectedRecipeId;
+    };
+    
+    // update user's recipe and mealplan info in db
+    $.ajax({
+      method: 'PUT',
+      url: '/api/recipes',
+      data: {selectedMealPlanSlotId, selectedRecipeId, selectedRecipeName, userAction},
+      success: handleSuccess,
+      error: handleError
+    })
+  })
+
+  $('.mealPlanSlot').on('dblclick', function(e) {
+    let userAction = 'double click';
+    console.log('selectedMealPlanSlotId:', e.target.id);
+    console.log('selectedMealPlanSlotExistingRecipe:', e.target.innerText);
+    selectedMealPlanSlotId = e.target.id;
+    selectedMealPlanSlotExistingRecipe = e.target.innerText;
+
+    // update mealplan slot in UI if a recipe has been selected
+    if (selectedRecipeId !== undefined) {
+      e.target.innerText = selectedRecipeName;
+      e.target.id = selectedRecipeId;
+    };
+    
+    // update user's recipe and mealplan info in db
+    $.ajax({
+      method: 'PUT',
+      url: '/api/recipes',
+      data: {selectedMealPlanSlotId, selectedRecipeId, selectedRecipeName, selectedMealPlanSlotExistingRecipe, userAction},
+      success: handleSuccess,
+      error: handleError
+    })
+  })
 };
 
 function getUserDetails(json) {
@@ -285,6 +338,9 @@ function getUserDetails(json) {
 //     });
 // });
 
+function handleSuccess() {
+  console.log('ajax success response')
+}
 function handleError() {
-  console.log('handleError');
+  console.log('ajax error response');
 }
