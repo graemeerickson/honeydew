@@ -82,12 +82,10 @@ function renderHomePage () {
   recipeBankDiv.append(userRecipesHtml);
   mealPlanDiv.append(userMealPlanHtml);
 
+  // populate mealplan with active recipes
   $('.mealPlanSlot').each(function(index) {
     let elementId = $(this)[0].id;
-    // console.log($(this)[0]);
-    // $(this).text();
     $(this).text(userMealPlan[elementId])
-  // }) val(userMealPlan[i]);
   })
 };
 
@@ -96,8 +94,10 @@ function setRecipeAndMealplanEventListeners() {
   $('.badge-pill').on('click', function(e) {
     console.log('selectedRecipeName:', e.target.innerText);
     console.log('selectedRecipeId:', e.target.id);
+    $('.active').removeClass('active');
     selectedRecipeId = e.target.id;
     selectedRecipeName = e.target.innerText;
+    $(this).addClass('active');
   })
 
   // event listener on meal plan slots to update slot with selected recipe
@@ -106,6 +106,7 @@ function setRecipeAndMealplanEventListeners() {
     let recipeStatus;
     let mealPlanSlotStatus;
 
+    $('.active').removeClass('active');
     selectedMealPlanSlotId = e.target.id;
     selectedMealPlanSlotExistingRecipe = e.target.innerText;
     selectedRecipeId == undefined ? recipeStatus = 'not selected' : recipeStatus = 'selected';
