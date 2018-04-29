@@ -23,17 +23,14 @@ table.table-bordered > thead > tr > th {
   background-color: rgba(166,166,166,.2);
   border: 1px solid #A6A6A6;
   width: 12.5%;
-  cursor: default;
 }
 table.table-bordered > tbody > tr > th {
   border: 1px solid #A6A6A6;
   width: 12.5%;
-  cursor: default;
 }
 table.table-bordered > tbody > tr > td {
   border: 1px solid #A6A6A6;
   width: 12.5%;
-  cursor: default;
 }
 table.table-bordered > tbody > tr > td:hover {
   text-decoration: line-through;
@@ -67,11 +64,8 @@ span .badge {
 }
 .branded-btn {
   background-color: #D1E681;
-  /*color: #2E197E;*/
 }
 .badge {
-  /*background-color: #a6a6a6;*/
-  /*background-color: #6D747C;*/
   cursor: pointer;
   height: 20px;
 }
@@ -81,6 +75,11 @@ span .badge {
   color: #6D747C;
 }
 .badge-outline:hover {
+  background-color: #6D747C;
+  border: 1px solid #6D747C;
+  color: white;
+}
+.active {
   background-color: #6D747C;
   border: 1px solid #6D747C;
   color: white;
