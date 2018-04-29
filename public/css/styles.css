@@ -38,6 +38,10 @@ table.table-bordered > tbody > tr > td {
 span .badge {
   font-size: 124px;
 }
+.welcome-message {
+  color: #A9A9A9;
+  cursor: default;
+}
 .logo {
   height: 64px;
   margin-top: 20px;
