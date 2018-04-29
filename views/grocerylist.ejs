@@ -1,12 +1,14 @@
 <h1>Grocery List</h1>
 <p>Your grocery list contains ingredients from the recipes in your week's meal plan.</p>
 
-<ul>
-  <% userRecipes.forEach( (recipe) => { %>
-  <%   if (recipe.activeCount === 0) { %>
-  <%    recipe.ingredients.forEach( (ingredient) => { %>
-          <li> <%= ingredient.ingredientName %>&nbsp;(<%= ingredient.qty %> <%= ingredient.measuringUnit %>)</li>
-  <%    }) %>
-  <%   } else {} %>
-  <% }) %>
+<% if (userRecipes.length === 0) { %>
+     <p>You haven't added any recipes to your meal plan yet. <a href="/">Add them now!</a></p>
+<% } else { %>     
+     <ul>
+<%     userRecipes.forEach( (recipe) => { %>
+<%       recipe.ingredients.forEach( (ingredient) => { %>
+           <li> <%= ingredient.ingredientName %>&nbsp;(<%= ingredient.qty %> <%= ingredient.measuringUnit %>)</li>
+<%       }) %>
+<%     }) %>
+<% } %>
 </ul>
