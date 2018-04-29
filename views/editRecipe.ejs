@@ -135,7 +135,7 @@
     </div>
     <div class="modal-footer">
       <a href="/profile" class="btn" id="cancelLink">Cancel</a>
-      <input type="button" class="btn btn-danger" id="deleteRecipeBtn" value="Delete recipe">
+      <a href="/profile"><input type="button" class="btn btn-danger" id="deleteRecipeBtn" data-id="<%=userRecipe[0]._id%>" value="Delete recipe"></a>
       <input type="submit" class="btn branded-btn" id="saveRecipeBtn" value="Update recipe">
     </div>
   </div> <!-- close container -->
