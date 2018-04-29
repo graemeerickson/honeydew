@@ -63,33 +63,61 @@ router.post('/', isLoggedIn, upload.single('myFile'), (req, res) => {
   });
 })
 
+// PUT route to update user's recipe & mealplan
 router.put('/', isLoggedIn, (req,res) => {
   console.log('req.body:', req.body);
-  // update user's recipe - increment or decrement activeCount
-  // db.User.findByIdAndUpdate(
-  //   res.locals.currentUser.id,
+  let scenario = req.body.scenario;
 
-  // )
-
-  db.User.findById(res.locals.currentUser.id, function(err, user) {
-    if (err) { console.log("Error finding user in db", err); };
-    console.log('userAction:', req.body.userAction);
-    console.log('mealPlan:', user.mealPlan);
-    console.log('req.body.selectedRecipeName:',req.body.selectedRecipeName);
-    console.log('mealPlan at specified element:', user.mealPlan[req.body.selectedMealPlanSlotId]);
-    if (req.body.userAction === 'single click' && req.body.selectedRecipeName !== undefined) {
-      user.mealPlan.splice(req.body.selectedMealPlanSlotId,1,req.body.selectedRecipeName);
-      user.save();
-      // res.send(`Updated user's mealplan slot #${req.body.selectedMealPlanSlotId} successfully`);
-      res.render('home');
-    } else if (req.body.userAction === 'double click' && req.body.selectedRecipeName == undefined) {
+  if (scenario === 'clear-mealplan-slot') {
+    db.User.findById(res.locals.currentUser.id, function(err, user) {
+      if (err) { console.log("Error finding user in db", err); };
+      // decrement cleared recipe's active count
+      for (let i = 0; i < user.recipes.length; i++) {
+        if (user.recipes[i].recipeName === req.body.selectedMealPlanSlotExistingRecipe) {
+          user.recipes[i].activeCount > 0 ? user.recipes[i].activeCount -= 1 : user.recipes[i].activeCount = 0;
+        }
+      }
+      // update mealplan slot to a blank value
       user.mealPlan.splice(req.body.selectedMealPlanSlotId,1,"");
       user.save();
-      // res.send(`Cleared user's mealplan slot #${req.body.selectedMealPlanSlotId} successfully`);
-      res.redirect('home');
-    }
-    // res.send('success');
-  });
+      res.render('home');
+    })
+  }
+
+  else if (scenario === 'populate-mealplan-slot') {
+    db.User.findById(res.locals.currentUser.id, function(err, user) {
+      if (err) { console.log("Error finding user in db", err); };
+      // increment selected recipe's active count
+      for (let i = 0; i < user.recipes.length; i++) {
+        if (user.recipes[i].recipeName === req.body.selectedRecipeName) {
+          user.recipes[i].activeCount += 1;
+        }
+      }
+      // update mealplan slot to selected recipe
+      user.mealPlan.splice(req.body.selectedMealPlanSlotId,1,req.body.selectedRecipeName);
+      user.save();
+      res.render('home');
+    })
+  }
+
+  else if (scenario === 'replace-mealplan-slot') {
+    db.User.findById(res.locals.currentUser.id, function(err, user) {
+      if (err) { console.log("Error finding user in db", err); };
+      // decrement previous recipe's active count, and increment selected recipe's active count
+      for (let i = 0; i < user.recipes.length; i++) {
+        if (user.recipes[i].recipeName === req.body.selectedMealPlanSlotExistingRecipe) {
+          user.recipes[i].activeCount > 0 ? user.recipes[i].activeCount -= 1 : user.recipes[i].activeCount = 0;
+        }
+        if (user.recipes[i].recipeName === req.body.selectedRecipeName) {
+          user.recipes[i].activeCount += 1;
+        }
+      }
+      // update mealplan slot to selected recipe
+      user.mealPlan.splice(req.body.selectedMealPlanSlotId,1,req.body.selectedRecipeName);
+      user.save();
+      res.render('home');
+    })
+  }
 })
 // allow other files to access the routes defined here
 module.exports = router;
