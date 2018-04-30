@@ -87,7 +87,7 @@ router.post('/', isLoggedIn, upload.single('myFile'), (req, res) => {
 router.put('/', isLoggedIn, (req,res) => {
   let scenario = req.body.scenario;
 
-  // scenario: new recipe is selected, and mealplan slot is blank - UPDATE CURRENT RECIPE AND POPULATE MEAL PLAN SLOT
+  // scenario: no new recipe is selected, and mealplan slot is not blank - UPDATE PREVIOUS RECIPE AND CLEAR MEAL PLAN SLOT
   switch (scenario) {
     case 'clear-mealplan-slot':
       db.User.findById(res.locals.currentUser.id, function(err, user) {
@@ -104,7 +104,7 @@ router.put('/', isLoggedIn, (req,res) => {
         res.render('home');
       })
       break;
-    // scenario: new recipe is selected, and mealplan slot is blank - UPDATE CURRENT RECIPE AND POPULATE MEAL PLAN SLOT
+    // scenario: new recipe is selected, and mealplan slot is blank - UPDATE SELECTED RECIPE AND POPULATE MEAL PLAN SLOT
     case 'populate-mealplan-slot':
       db.User.findById(res.locals.currentUser.id, function(err, user) {
         if (err) { console.log("Error finding user in db", err); };
@@ -120,7 +120,7 @@ router.put('/', isLoggedIn, (req,res) => {
         res.render('home');
       })
       break;
-    // scenario: new recipe is selected, and mealplan slot is not blank - UPDATE PREVIOUS AND CURRENT RECIPE, AND REPLACE MEAL PLAN SLOT
+    // scenario: new recipe is selected, and mealplan slot is not blank - UPDATE PREVIOUS AND SELECTED RECIPE, AND REPLACE MEAL PLAN SLOT
     case 'replace-mealplan-slot':
       db.User.findById(res.locals.currentUser.id, function(err, user) {
         if (err) { console.log("Error finding user in db", err); };
