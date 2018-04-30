@@ -72,6 +72,74 @@ __Views__
 |profile.ejs|Display user's recipes, organized by mealtype (i.e., breakfast, lunch, dinner, dessert) and with links to view specific recipe details.
 |viewRecipe.ejs|Display specific selected recipe details.
 
+__Selected Code Snippet__
+
+The most complicated section of code relates to handling when the user places a recipe into his/her mealplan. The code below tackles the three possible scenarios:
+
+ 1. No new recipe is selected, and the mealplan slot is not blank. Action: Decrement the existing recipe's active count by one, and clear the mealplan slot of the recipe name.
+ 2. A new recipe is selected, and the mealplan slot is blank. Action: Increment selected recipe's active count by one, and populate the mealplan slot with the recipe name.
+ 3. A new recipe is selected, and the mealplan slot is not blank. Action: Decrement the existing recipe's active count by one, increment the selected recipe's active count by one, and update the mealplan slot with the selected recipe name.
+```
+// PUT route to update user's recipe & mealplan
+router.put('/', isLoggedIn, (req,res) => {
+  let scenario = req.body.scenario;
+
+  // scenario: no new recipe is selected, and mealplan slot is not blank - UPDATE PREVIOUS RECIPE AND CLEAR MEAL PLAN SLOT
+  switch (scenario) {
+    case 'clear-mealplan-slot':
+      db.User.findById(res.locals.currentUser.id, function(err, user) {
+        if (err) { console.log("Error finding user in db", err); };
+        // decrement cleared recipe's active count
+        for (let i = 0; i < user.recipes.length; i++) {
+          if (user.recipes[i].recipeName === req.body.selectedMealPlanSlotExistingRecipe) {
+            user.recipes[i].activeCount > 0 ? user.recipes[i].activeCount -= 1 : user.recipes[i].activeCount = 0;
+          }
+        }
+        // update mealplan slot to a blank value
+        user.mealPlan.splice(req.body.selectedMealPlanSlotId,1,"");
+        user.save();
+        res.render('home');
+      })
+      break;
+    // scenario: new recipe is selected, and mealplan slot is blank - UPDATE SELECTED RECIPE AND POPULATE MEAL PLAN SLOT
+    case 'populate-mealplan-slot':
+      db.User.findById(res.locals.currentUser.id, function(err, user) {
+        if (err) { console.log("Error finding user in db", err); };
+        // increment selected recipe's active count
+        for (let i = 0; i < user.recipes.length; i++) {
+          if (user.recipes[i].recipeName === req.body.selectedRecipeName) {
+            user.recipes[i].activeCount += 1;
+          }
+        }
+        // update mealplan slot to selected recipe
+        user.mealPlan.splice(req.body.selectedMealPlanSlotId,1,req.body.selectedRecipeName);
+        user.save();
+        res.render('home');
+      })
+      break;
+    // scenario: new recipe is selected, and mealplan slot is not blank - UPDATE PREVIOUS AND SELECTED RECIPE, AND REPLACE MEAL PLAN SLOT
+    case 'replace-mealplan-slot':
+      db.User.findById(res.locals.currentUser.id, function(err, user) {
+        if (err) { console.log("Error finding user in db", err); };
+        // decrement previous recipe's active count, and increment selected recipe's active count
+        for (let i = 0; i < user.recipes.length; i++) {
+          if (user.recipes[i].recipeName === req.body.selectedMealPlanSlotExistingRecipe) {
+            user.recipes[i].activeCount > 0 ? user.recipes[i].activeCount -= 1 : user.recipes[i].activeCount = 0;
+          }
+          if (user.recipes[i].recipeName === req.body.selectedRecipeName) {
+            user.recipes[i].activeCount += 1;
+          }
+        }
+        // update mealplan slot to selected recipe
+        user.mealPlan.splice(req.body.selectedMealPlanSlotId,1,req.body.selectedRecipeName);
+        user.save();
+        res.render('home');
+      })
+      break;
+  }
+})
+```
+
 ## Tools & Technologies
 * HTML
 * CSS
