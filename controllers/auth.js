@@ -56,7 +56,7 @@ router.post('/signup', (req, res, next) => {
         console.log("Signed up! Now let's log in");
         passport.authenticate('local', {
           successRedirect: '/',
-          successFlash: 'Account created successfully'
+          successFlash: 'Account created successfully - now start inputting your recipes!'
         })(req, res, next);
       })
     }
