@@ -42,6 +42,11 @@ table.table-bordered > tbody > tr > td:hover {
 }
 .branded-btn {
   background-color: #D1E681;
+  border-color: #D1E681;
+  color: #6D747C;
+}
+.branded-btn:hover {
+  color: #171717;
 }
 .btn-add {
   background-color: #D1E681;
@@ -86,6 +91,9 @@ table.table-bordered > tbody > tr > td:hover {
 }
 .mobileDay {
   background-color: #F5F5F5;
+}
+.recipe-button {
+  padding: 3px;
 }
 .recipe-photo {
   border-radius: 7px;
