@@ -95,5 +95,3 @@ db.User.findOneAndUpdate({ _id: '5adfc0b829ea87c828775298'}, { recipes: sampleRe
     console.log('db seeded :)');
   }
 });
-
-// process.exit();
