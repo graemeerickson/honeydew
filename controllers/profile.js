@@ -18,6 +18,7 @@ router.get('/', isLoggedIn, (req, res) => {
 
 // POST route to capture clicked recipe ID, which will be used to show the recipe details on the View Recipe page
 router.post('/viewRecipe', isLoggedIn, (req, res) => {
+  console.log(req.body.id);
   recipeId = req.body.id;
   res.json(recipeId);
 });
@@ -26,8 +27,9 @@ router.post('/viewRecipe', isLoggedIn, (req, res) => {
 router.get('/viewRecipe', isLoggedIn, (req, res) => {
   db.User.findById(res.locals.currentUser._id, function(err, user) {
     const userRecipe = user.recipes.filter( (recipe) => {
-      return recipe._id === recipeId;
+      return recipe._id == recipeId;
     })
+    console.log('userRecipe:', userRecipe);
     res.render('viewRecipe', {userRecipe: userRecipe});
   })
 })
