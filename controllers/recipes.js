@@ -4,7 +4,7 @@ const isLoggedIn = require('../middleware/isLoggedIn');
 const multer = require('multer');    // for cloudinary
 const passport = require('../config/passportConfig');
 const router = express.Router();
-const upload = multer({ dest: '../uploads/' });  // for cloudinary
+const upload = multer({ dest: './uploads/' });  // for cloudinary
 
 // include the user and recipe models
 const db = require('../models');
