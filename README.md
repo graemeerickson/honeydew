@@ -6,6 +6,7 @@ A full-stack web app that enables users to more effectively plan their meals for
 
 ## Objective & Project Details
 __Objective__
+
 Honeydew is designed to fast-track the meal-planning process. The user starts by logging their favorite recipes, which are then presented in a recipe bank to select and place within their calendar week.
 
 By selecting a recipe and placing it into a mealplan slot (e.g., Monday, dinner), the recipe becomes 'active' so that its ingredients are added to the user's grocery list. Once the user is done placing recipes into their mealplan, they can view a summary of their recipes and required ingredients by clicking the "See grocery list" button.
@@ -15,6 +16,7 @@ Lastly, the user can view all their recipes on the Profile screen. Recipes are o
 From a technical perspective, honeydew is a full-stack web application. It uses HTML/CSS/Javascript/jQuery/Bootstrap on the front-end, Express on the back-end, and MongoDB for its database. Honeydew was also designed for both desktop & mobile. On desktop, the week's mealplan is laid out like a standard calendar with the days stretching horizontally. On mobile, the mealplan calendar is inverted, displaying the calendar days vertically instead. Mobile functionality was enabled by Bootstrap 4 plus specific media queries.
 
 __Data Model__
+
 Honeydew data models include:
 * User: Object
   * name: String (e.g., 'Graeme')
@@ -34,6 +36,7 @@ Honeydew data models include:
   * measuringUnit: String (e.g., cups)
 
 __Third Party API__
+
 Honeydew integrates with [Cloudinary](https://cloudinary.com/ "Cloudinary") for 3rd party image storage, allowing the user to upload their most delicious-looking photos to go along with their recipes. Honeydew both writes to and reads from Cloudinary for image upload & image loading.
 
 ## Tools & Technologies
@@ -88,3 +91,4 @@ Honeydew integrates with [Cloudinary](https://cloudinary.com/ "Cloudinary") for 
 I would implement the following additional features:
 * Drag & drop recipes to mealplan.
 * Smarter, more summarized grocery list.
+* A more efficient mechanism for adding recipes.
