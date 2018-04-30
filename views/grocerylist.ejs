@@ -4,18 +4,18 @@
 <div class="container">
 
 <!-- local variables to store and sort recipe & ingredient info before displaying on screen -->
-<% let recipeSummary = [] %>
-<% let ingredientsList = [] %>
+<% let recipeSummary = [];
+   let ingredientsList = [] %>
   
   <h4>RECIPES</h4>
 
 <!-- store recipes to local variable -->
-<% userRecipes.forEach( (recipe) => { %>
-<%   let activeCount = recipe.activeCount; %>
-<%   for (let i = 0; i < activeCount; i++) { %>
-<%     recipeSummary.push(recipe.recipeName) %>
-<%   } %>
-<% }); %>
+<% userRecipes.forEach( (recipe) => {
+     let activeCount = recipe.activeCount;
+     for (let i = 0; i < activeCount; i++) {
+       recipeSummary.push(recipe.recipeName)
+     }
+   }); %>
 
 <!-- sort recipes alphabetically, then display on screen -->
   <ul>
@@ -29,13 +29,13 @@
      <p>You haven't added any recipes to your meal plan yet. <a href="/">Add them now!</a></p>
 <% } else { %>
      <!-- store ingredients to local variable -->
-<%   userRecipes.forEach( (recipe) => { %>
-<%     recipe.ingredients.forEach( (ingredient) => { %>
-<%       let ingredientStr = `${ingredient.ingredientName} (${ingredient.qty} ${ingredient.measuringUnit})`; %>
-<%       ingredientsList.push(ingredientStr); %>
-<%     }) %>
-<%   }) %>
-<% } %>
+<%   userRecipes.forEach( (recipe) => {
+       recipe.ingredients.forEach( (ingredient) => {
+         let ingredientStr = `${ingredient.ingredientName} (${ingredient.qty} ${ingredient.measuringUnit})`;
+         ingredientsList.push(ingredientStr);
+       })
+     })
+   } %>
 
 <!-- sort ingredients alphabetically, then display on screen -->
   <ul>
