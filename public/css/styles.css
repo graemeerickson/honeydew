@@ -93,6 +93,7 @@ table.table-bordered > tbody > tr > td:hover {
   background-color: #F5F5F5;
 }
 .recipe-button {
+  min-width: 40px;
   padding: 3px;
 }
 .recipe-photo {
