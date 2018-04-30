@@ -4,6 +4,7 @@
 <div class="container">
   <h4>RECIPES</h4>
 <% let recipeSummary = [] %>
+<% let ingredientsList = [] %>
 <% userRecipes.forEach( (recipe) => { %>
 <%   let activeCount = recipe.activeCount; %>
 <%   for (let i = 0; i < activeCount; i++) { %>
@@ -19,13 +20,18 @@
   <h4>INGREDIENTS</h4>
 <% if (userRecipes.length === 0) { %>
      <p>You haven't added any recipes to your meal plan yet. <a href="/">Add them now!</a></p>
-<% } else { %>     
-     <ul>
-<%     userRecipes.forEach( (recipe) => { %>
-<%       recipe.ingredients.forEach( (ingredient) => { %>
-           <li> <%= ingredient.ingredientName %>&nbsp;(<%= ingredient.qty %> <%= ingredient.measuringUnit %>)</li>
-<%       }) %>
+<% } else { %>
+<%   userRecipes.forEach( (recipe) => { %>
+<%     recipe.ingredients.forEach( (ingredient) => { %>
+<%       let ingredientStr = `${ingredient.ingredientName} (${ingredient.qty} ${ingredient.measuringUnit})`; %>
+<%       ingredientsList.push(ingredientStr); %>
 <%     }) %>
+<%   }) %>
 <% } %>
-     </ul>
+
+  <ul>
+<% ingredientsList.sort().forEach( (ingredient) => { %>
+      <li><%= ingredient %></li>
+<%  }) %>
+  </ul>
 </div>
