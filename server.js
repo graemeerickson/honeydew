@@ -31,13 +31,13 @@ app.use(expressLayouts);
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: true
 }));
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-// just a convenience, but makes life easier...
+// maintain active user
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
   res.locals.alerts = req.flash();
@@ -49,11 +49,11 @@ app.get('/', (req, res) => {
   res.render('home')
 });
 
-// include any routes from controllers
-app.use('/auth', require('./controllers/auth'));
-app.use('/profile', require('./controllers/profile'));
+// include routes from controllers
 app.use('/api/recipes', require('./controllers/recipes'));
+app.use('/auth', require('./controllers/auth'));
 app.use('/grocerylist', require('./controllers/grocerylist'));
+app.use('/profile', require('./controllers/profile'));
 
 /* Error Handling */
 app.get('*', function (req, res) {
