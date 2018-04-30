@@ -1,7 +1,5 @@
 var userRecipes = [];
 var userMealPlan = [];
-var userId;
-var editRecipeId;
 var selectedRecipeName;
 var selectedRecipeId;
 var selectedMealPlanSlotId;
@@ -16,12 +14,30 @@ $(document).ready(function() {
     error: handleError
   });
 
+  $(document).on('click', '.btn-add', function(e) {
+    e.preventDefault();
+
+    var controlForm = $('.controls'),
+        currentEntry = $(this).parents('.entry:first'),
+        newEntry = $(currentEntry.clone()).appendTo(controlForm);
+
+    newEntry.find('input').val('');
+    controlForm.find('.entry:not(:last) .btn-add')
+               .removeClass('btn-add').addClass('btn-remove')
+               .removeClass('btn-success').addClass('btn-danger')
+               .html('<span class="glyphicon glyphicon-minus"></span>');
+  }).on('click', '.btn-remove', function(e) {
+    $(this).parents('.entry:first').remove();
+    e.preventDefault();
+    return false;
+  });
+
   // set event listener on the Edit Recipe buttons on the Profile page
-  $('.editRecipeBtn').on('click',function(e) {
+  $('.viewRecipeBtn').on('click',function(e) {
     e.preventDefault;
     $.ajax({
       method: 'POST',
-      url: '/profile/editRecipe',
+      url: '/profile/viewRecipe',
       data: $(this).data()
     })
   })
@@ -31,21 +47,7 @@ $(document).ready(function() {
     e.preventDefault;
     $.ajax({
       method: 'DELETE',
-      url: '/profile/editRecipe',
-      data: $(this).data(),
-      success: handleSuccess,
-      error: handleError
-    })
-  })
-
-  // set event listener on the Edit Recipe form to capture info on submit
-  $('#editRecipeForm').on('submit',function(e) {
-    console.log($(this));
-    e.preventDefault;
-    console.log('Recipe Id:', $(this).data().id);
-    $.ajax({
-      method: 'PUT',
-      url: '/profile/editRecipe',
+      url: '/profile/viewRecipe',
       data: $(this).data(),
       success: handleSuccess,
       error: handleError
