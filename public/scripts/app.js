@@ -93,7 +93,7 @@ function renderHomePage () {
   recipeBankDiv.append(userRecipesHtml);
   mealPlanDiv.append(userMealPlanHtml);
 
-  populateMealPlanWithRecipes();
+  populateMealPlanWithActiveRecipes();
 };
 
 function setRecipeAndMealplanEventListeners() {
