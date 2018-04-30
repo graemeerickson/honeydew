@@ -34,10 +34,6 @@ table.table-bordered > tbody > tr > td {
 }
 table.table-bordered > tbody > tr > td:hover {
   text-decoration: line-through;
-  color: red;
-}
-.clearMeal:hover {
-  color: red;
 }
 span .badge {
   font-size: 124px;
