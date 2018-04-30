@@ -16,32 +16,29 @@ router.get('/', isLoggedIn, (req, res) => {
   });
 });
 
-// POST route to capture clicked recipe ID, which will be used to show the recipe details on the Edit Recipe page
-router.post('/editRecipe', isLoggedIn, (req, res) => {
+// POST route to capture clicked recipe ID, which will be used to show the recipe details on the View Recipe page
+router.post('/viewRecipe', isLoggedIn, (req, res) => {
   recipeId = req.body.id;
   res.json(recipeId);
 });
 
-// GET route to show appropriate recipe details on the Edit Recipe page
-router.get('/editRecipe', isLoggedIn, (req, res) => {
+// GET route to show appropriate recipe details on the View Recipe page
+router.get('/viewRecipe', isLoggedIn, (req, res) => {
   db.User.findById(res.locals.currentUser._id, function(err, user) {
     const userRecipe = user.recipes.filter( (recipe) => {
-      return recipe._id == recipeId;
+      return recipe._id === recipeId;
     })
-    res.render('editRecipe', {userRecipe: userRecipe});
+    res.render('viewRecipe', {userRecipe: userRecipe});
   })
 })
 
 // DELETE route to remove selected recipe from the db
-router.delete('/editRecipe', isLoggedIn, (req, res) => {
-  console.log('req.body:', req.body)
+router.delete('/viewRecipe', isLoggedIn, (req, res) => {
   recipeId = req.body.id;
-  console.log('recipeId to remove:', recipeId);
   db.User.findById(res.locals.currentUser._id, function(err, user) {
     if (err) return res.send(err);
     user.recipes.filter( (recipe, index) => {
       if (recipe._id == recipeId) {
-        console.log('in if statement');
         recipe.remove();
         user.save();
         res.send('Successfully deleted recipe');
@@ -49,6 +46,25 @@ router.delete('/editRecipe', isLoggedIn, (req, res) => {
     })
   })
 })
+
+// PUT route to updated selected recipe in the db
+router.put('/viewRecipe', isLoggedIn, (req, res) => {
+  console.log('req.body:', req.body)
+  recipeId = req.body.id;
+  console.log('recipeId to update:', recipeId);
+  // db.User.findById(res.locals.currentUser._id, function(err, user) {
+  //   if (err) return res.send(err);
+  //   user.findByIdAndUpdate(
+  //     {recipes.id: req.body.id},
+  //     {
+
+  //     }, function(err, cb) {
+  //       if (err) res.send(err);
+        res.send('Successfully updated recipe');
+  //     }
+  //   });
+  // });
+});
 
 // allow other files to access the routes defined here
 module.exports = router;
