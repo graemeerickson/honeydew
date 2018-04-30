@@ -1,18 +1,18 @@
 // include modules
 require('dotenv').config(); // loads the .env
 const bodyParser = require('body-parser');
+const cloudinary = require('cloudinary');
+const db = require('./models');
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const isLoggedIn = require('./middleware/isLoggedIn');
-const mongoose = require('mongoose');
 const logger = require('morgan');
+const mongoose = require('mongoose');
+const multer = require('multer');
 const passport = require('./config/passportConfig');
 const path = require('path');
 const session = require('express-session');
-const db = require('./models');
-const cloudinary = require('cloudinary');
-const multer = require('multer');
 const upload = multer({ dest: './uploads/' });
 
 // initialize app
@@ -44,7 +44,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-// top-level routes
+// top-level route
 app.get('/', (req, res) => {
   res.render('home')
 });
