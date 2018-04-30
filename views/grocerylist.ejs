@@ -1,6 +1,22 @@
 <h1>Grocery List</h1>
 <p>Your grocery list contains ingredients from the recipes in your week's meal plan.</p>
+<hr>
+<div class="container">
+  <h4>RECIPES</h4>
+<% let recipeSummary = [] %>
+<% userRecipes.forEach( (recipe) => { %>
+<%   let activeCount = recipe.activeCount; %>
+<%   for (let i = 0; i < activeCount; i++) { %>
+<%     recipeSummary.push(recipe.recipeName) %>
+<%   } %>
+<% }); %>
+  <ul>
+<%  recipeSummary.sort().forEach( (recipe) => { %>
+      <li><%= recipe %></li>
+<%  }) %>
+  </ul>
 
+  <h4>INGREDIENTS</h4>
 <% if (userRecipes.length === 0) { %>
      <p>You haven't added any recipes to your meal plan yet. <a href="/">Add them now!</a></p>
 <% } else { %>     
@@ -11,4 +27,5 @@
 <%       }) %>
 <%     }) %>
 <% } %>
-</ul>
+     </ul>
+</div>
