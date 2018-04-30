@@ -19,37 +19,60 @@ router.get('/', isLoggedIn, (req, res) => {
 
 // create a new recipe belonging to the user
 router.post('/', isLoggedIn, upload.single('myFile'), (req, res) => {  
-  // create new ingredients object
-  // convert entered strings into arrays
-  // let ingredientItemArr = req.body.ingredientItemInput.split(',');
-  // let ingredientQtyArr = req.body.ingredientQtyInput.split(',');
-  // let ingredientMeasuringUnitArr = req.body.ingredientMeasuringUnitSelect.split(',');
-  let ingredientItemArr = [];
-  ingredientItemArr.push(req.body.ingredientItemInput);
-  let ingredientQtyArr = [];
-  ingredientQtyArr.push(req.body.ingredientQtyInput);
-  let ingredientMeasuringUnitArr = [];
-  ingredientMeasuringUnitArr.push(req.body.ingredientMeasuringUnitSelect);
-
-  console.log('ingredientItemArr:', ingredientItemArr);
-  console.log('ingredientQtyArr:', ingredientQtyArr);
-  console.log('ingredientMeasuringUnitArr:', ingredientMeasuringUnitArr);
-
+  console.log('req.body', req.body);
+  console.log('typeof req.body.ingredientItemInput:', typeof req.body.ingredientItemInput)
   let ingredientsArr = [];
-  for (let i = 0; i < ingredientItemArr.length; i++) {
-    let tmpIngredientObj = {};
-    tmpIngredientObj.ingredientName = ingredientItemArr[i];
-    tmpIngredientObj.qty = ingredientQtyArr[i];
-    tmpIngredientObj.measuringUnit = ingredientMeasuringUnitArr[i];
-    ingredientsArr.push(tmpIngredientObj);
-  }
-  console.log('ingredientsArr:', ingredientsArr);
+  // if just one ingredient in recipe, convert ingredient strings to arrays
+  if (typeof req.body.ingredientItemInput === 'string') {
+    let ingredientItemArr = [];
+    ingredientItemArr.push(req.body.ingredientItemInput);
+    let ingredientQtyArr = [];
+    ingredientQtyArr.push(req.body.ingredientQtyInput);
+    let ingredientMeasuringUnitArr = [];
+    ingredientMeasuringUnitArr.push(req.body.ingredientMeasuringUnitSelect);
 
-  // create new recipe object with Cloudinary image url, then insert into user record. redirect user to homepage.
-  cloudinary.uploader.upload(req.file.path, function(result) {
-    console.log('running cloudinary uploader');
-    let newRecipe = new db.Recipe({ recipeName: req.body.recipeNameInput, servingSize: req.body.servingSizeSelect, ingredients: ingredientsArr, prepInstructions: req.body.prepInstructionsTextArea, prepTime: req.body.prepTimeInput, cookTime: req.body.cookTimeInput, mealType: req.body.mealTypeSelect, imgUrl: result.url, activeCount: 0 })
-    newRecipe.save();
+    // populate ingredient objects & push to a single consolidated ingredients array
+    for (let i = 0; i < ingredientItemArr.length; i++) {
+      let tmpIngredientObj = {};
+      tmpIngredientObj.ingredientName = ingredientItemArr[i];
+      tmpIngredientObj.qty = ingredientQtyArr[i];
+      tmpIngredientObj.measuringUnit = ingredientMeasuringUnitArr[i];
+      ingredientsArr.push(tmpIngredientObj);
+    }
+  }
+  // multiple ingredients included, so no need to convert to array
+  else {
+    for (let i = 0; i < req.body.ingredientItemInput.length; i++) {
+      let tmpIngredientObj = {};
+      tmpIngredientObj.ingredientName = req.body.ingredientItemInput[i];
+      tmpIngredientObj.qty = req.body.ingredientQtyInput[i];
+      tmpIngredientObj.measuringUnit = req.body.ingredientMeasuringUnitSelect[i];
+      ingredientsArr.push(tmpIngredientObj);
+    }
+  };
+
+  if (req.file !== undefined) {
+    // create new recipe object with Cloudinary image url, then insert into user record. redirect user to homepage.
+    cloudinary.uploader.upload(req.file.path, function(result) {
+      console.log('running cloudinary uploader');
+      let newRecipe = new db.Recipe({ recipeName: req.body.recipeNameInput, servingSize: req.body.servingSizeSelect, ingredients: ingredientsArr, prepInstructions: req.body.prepInstructionsTextArea, prepTime: req.body.prepTimeInput, cookTime: req.body.cookTimeInput, mealType: req.body.mealTypeSelect, imgUrl: result.url, activeCount: 0 })
+      newRecipe.save();
+
+      db.User.findByIdAndUpdate(
+        res.locals.currentUser,
+        {$push: {recipes: newRecipe}},
+        { 'new': true },
+        function (err, user) {
+          if (err) { console.log('Error adding new recipe to user db record', err); };
+          res.redirect('/');
+        }
+      );
+    });
+  } 
+  // no image included, so bypass cloudinary
+  else {
+    let newRecipe = new db.Recipe({ recipeName: req.body.recipeNameInput, servingSize: req.body.servingSizeSelect, ingredients: ingredientsArr, prepInstructions: req.body.prepInstructionsTextArea, prepTime: req.body.prepTimeInput, cookTime: req.body.cookTimeInput, mealType: req.body.mealTypeSelect, imgUrl: '', activeCount: 0 })
+      newRecipe.save();
 
     db.User.findByIdAndUpdate(
       res.locals.currentUser,
@@ -60,7 +83,7 @@ router.post('/', isLoggedIn, upload.single('myFile'), (req, res) => {
         res.redirect('/');
       }
     );
-  });
+  }
 })
 
 // PUT route to update user's recipe & mealplan
@@ -68,6 +91,7 @@ router.put('/', isLoggedIn, (req,res) => {
   console.log('req.body:', req.body);
   let scenario = req.body.scenario;
 
+  // scenario: new recipe is selected, and mealplan slot is blank - UPDATE CURRENT RECIPE AND POPULATE MEAL PLAN SLOT
   if (scenario === 'clear-mealplan-slot') {
     db.User.findById(res.locals.currentUser.id, function(err, user) {
       if (err) { console.log("Error finding user in db", err); };
@@ -83,7 +107,7 @@ router.put('/', isLoggedIn, (req,res) => {
       res.render('home');
     })
   }
-
+  // scenario: new recipe is selected, and mealplan slot is blank - UPDATE CURRENT RECIPE AND POPULATE MEAL PLAN SLOT
   else if (scenario === 'populate-mealplan-slot') {
     db.User.findById(res.locals.currentUser.id, function(err, user) {
       if (err) { console.log("Error finding user in db", err); };
@@ -99,7 +123,7 @@ router.put('/', isLoggedIn, (req,res) => {
       res.render('home');
     })
   }
-
+  // scenario: new recipe is selected, and mealplan slot is not blank - UPDATE PREVIOUS AND CURRENT RECIPE, AND REPLACE MEAL PLAN SLOT
   else if (scenario === 'replace-mealplan-slot') {
     db.User.findById(res.locals.currentUser.id, function(err, user) {
       if (err) { console.log("Error finding user in db", err); };
