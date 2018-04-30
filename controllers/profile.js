@@ -43,30 +43,11 @@ router.delete('/viewRecipe', isLoggedIn, (req, res) => {
       if (recipe._id == recipeId) {
         recipe.remove();
         user.save();
-        res.send('Successfully deleted recipe');
+        res.redirect('profile');
       }
     })
   })
 })
-
-// PUT route to updated selected recipe in the db
-router.put('/viewRecipe', isLoggedIn, (req, res) => {
-  console.log('req.body:', req.body)
-  recipeId = req.body.id;
-  console.log('recipeId to update:', recipeId);
-  // db.User.findById(res.locals.currentUser._id, function(err, user) {
-  //   if (err) return res.send(err);
-  //   user.findByIdAndUpdate(
-  //     {recipes.id: req.body.id},
-  //     {
-
-  //     }, function(err, cb) {
-  //       if (err) res.send(err);
-        res.send('Successfully updated recipe');
-  //     }
-  //   });
-  // });
-});
 
 // allow other files to access the routes defined here
 module.exports = router;
