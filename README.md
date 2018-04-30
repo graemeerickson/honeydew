@@ -1,3 +1,4 @@
+
 # Honeydew
 [Log your recipes and start meal-planning now!](https://honeydew-app.herokuapp.com/ "Log your recipes and start meal-planning now")
 
@@ -37,6 +38,39 @@ Honeydew data models include:
 __Third Party API__
 
 Honeydew integrates with [Cloudinary](https://cloudinary.com/ "Cloudinary") for 3rd party image storage, allowing the user to upload their most delicious-looking photos to go along with their recipes. Honeydew both writes to and reads from Cloudinary for image upload & image loading.
+
+__Routes__
+
+|URL|Method|Purpose
+|--|--|--|
+|/|GET|Render home screen (recipes & mealplan)
+|/auth/login|GET|Render login screen
+|/auth/login|POST|Accept login credentials
+|/auth/signup|GET|Render signup screen
+|/auth/signup|POST|Accept signup details
+|/api/recipes|GET|Get user's recipes
+|/api/recipes|POST|Create new recipe
+|/api/recipes|PUT|Update existing recipe (to increment/decrement active count)
+|/api/recipes|DELETE|Delete existing recipe
+|/grocerylist|GET|Get user's active recipes with related ingredients
+|/profile|GET|Get user's entire list of recipes
+|/profile/viewRecipe|GET|Get selected recipe to view recipe details
+|/profile/viewRecipe|POST|Post selected recipe ID to back-end
+|/profile/viewRecipe|DELETE|Delete selected recipe
+
+__Views__
+
+|View|Purpose
+|--|--|
+|auth/login.ejs|Display login form
+|auth/signup.ejs|Display signup form
+|grocerylist.ejs|Display summary of active (selected) recipes as well as related ingredients.
+|home.ejs|Display homepage - recipe bank, add recipe button, mealplan calendar w/ active meals, and grocery list button.
+|layout.ejs|Initialize html. Link to stylesheets and scripts. Contain references to partial views & body of other views.
+|partials/alerts.ejs|Flash success or error alerts to user.
+|partials/header.ejs|Contain logo and links to login/logout, signup & profile.
+|profile.ejs|Display user's recipes, organized by mealtype (i.e., breakfast, lunch, dinner, dessert) and with links to view specific recipe details.
+|viewRecipe.ejs|Display specific selected recipe details.
 
 ## Tools & Technologies
 * HTML
