@@ -17,22 +17,24 @@ $(document).ready(function() {
   $(document).on('click', '.btn-add', function(e) {
     e.preventDefault();
 
-    var controlForm = $('.controls'),
-        currentEntry = $(this).parents('.entry:first'),
-        newEntry = $(currentEntry.clone()).appendTo(controlForm);
+    // source for this code that dynamically expands ingredients list:
+    // https://bootsnipp.com/snippets/featured/dynamic-form-fields-add-amp-remove-bs3
+    let controlForm = $('.controls');
+    let currentEntry = $(this).parents('.entry:first');
+    let newEntry = $(currentEntry.clone()).appendTo(controlForm);
 
     newEntry.find('input').val('');
     controlForm.find('.entry:not(:last) .btn-add')
                .removeClass('btn-add').addClass('btn-remove')
                .removeClass('btn-success').addClass('btn-danger')
-               .html('<span class="glyphicon glyphicon-minus"></span>');
+               .html('<i class="fas fa-minus"></i>');
   }).on('click', '.btn-remove', function(e) {
     $(this).parents('.entry:first').remove();
     e.preventDefault();
     return false;
   });
 
-  // set event listener on the Edit Recipe buttons on the Profile page
+  // set event listener on the View Recipe buttons on the Profile page
   $('.viewRecipeBtn').on('click',function(e) {
     e.preventDefault;
     $.ajax({
@@ -42,7 +44,7 @@ $(document).ready(function() {
     })
   })
 
-  // set event listener on the Delete Recipe button on the Edit Recipe page
+  // set event listener on the Delete Recipe button on the View Recipe page
   $('#deleteRecipeBtn').on('click',function(e) {
     e.preventDefault;
     $.ajax({
@@ -58,7 +60,8 @@ $(document).ready(function() {
 function getRecipeHtml(recipe) {
   let recipeName = recipe.recipeName;
   let recipeId = recipe._id;
-  let html = `<span class="badge badge-pill badge-outline" id="${recipeId}">${recipeName}</span>&nbsp`
+  // let html = `<span class="badge badge-pill badge-outline" id="${recipeId}">${recipeName}</span>&nbsp`
+  let html = `<button type="button" class="btn btn-outline-secondary btn-sm recipe-button" id="${recipeId}">${recipeName}</button>&nbsp`
   return html;
 }
 
@@ -93,7 +96,7 @@ function renderHomePage () {
 
 function setRecipeAndMealplanEventListeners() {
   // event listener on recipes in recipe bank
-  $('.badge-pill').on('click', function(e) {
+  $('.recipe-button').on('click', function(e) {
     console.log('selectedRecipeName:', e.target.innerText);
     console.log('selectedRecipeId:', e.target.id);
     $('.active').removeClass('active');
