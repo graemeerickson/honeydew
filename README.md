@@ -186,7 +186,7 @@ router.put('/', isLoggedIn, (req,res) => {
 <img width="495" alt="honeydew_screenshot_login_mobile" src="https://user-images.githubusercontent.com/5596001/39444562-0fb67bac-4c6d-11e8-9d76-1909d8035958.png">
 
 #### Home screen - mobile
-<img width="495" alt="honeydew_screenshot_home_mobile" src="https://user-images.githubusercontent.com/5596001/39444559-0f29e0ca-4c6d-11e8-9cf8-afbfba7a7b65.png">
+<img width="495" alt="honeydew_screenshot_home_mobile" src="https://user-images.githubusercontent.com/5596001/39461146-a33eb7e0-4cbd-11e8-8fce-ead9248853e3.png">
 
 ## If I had more time...
 I would implement the following additional features:
