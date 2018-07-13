@@ -40,7 +40,9 @@ $(document).ready(function() {
     $.ajax({
       method: 'DELETE',
       url: `/recipes/${dataId}`,
-      success: handleSuccess,
+      success: () => {
+        location.href='/profile';
+      },
       error: handleError
     })
   })
