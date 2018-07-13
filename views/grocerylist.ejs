@@ -4,7 +4,8 @@
 <div class="container">
 
 <!-- local variables to store and sort recipe & ingredient info before displaying on screen -->
-<% let recipeSummary = [];
+<% let recipeList = [];
+   let recipeListSummary = [];
    let ingredientsList = [] %>
   
   <h4>RECIPES</h4>
@@ -13,13 +14,30 @@
 <% userRecipes.forEach( (recipe) => {
      let activeCount = recipe.activeCount;
      for (let i = 0; i < activeCount; i++) {
-       recipeSummary.push(recipe.recipeName)
+       recipeList.push(recipe.recipeName)
      }
    }); %>
 
+<%# <%
+  // recipeList.forEach( (recipe, index) => {
+  //   // while()
+  //   if (index === 0) {
+  //     recipeListSummary[index].recipeName = recipe;
+  //     recipeListSummary[index].count = 1;
+  //   } else if (recipeListSummary[index-1].recipeName == recipe) {
+  //     recipeListSummary[index].count += 1;
+  //   } else {
+  //     recipeListSummary[index].count = 1;
+  //   }
+  // })
+%>
+
+<%# 
+<%= recipeListSummary %>
+
 <!-- sort recipes alphabetically, then display on screen -->
   <ul>
-<%  recipeSummary.sort().forEach( (recipe) => { %>
+<%  recipeList.sort().forEach( (recipe) => { %>
       <li><%= recipe %></li>
 <%  }) %>
   </ul>
