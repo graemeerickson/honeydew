@@ -145,7 +145,6 @@ router.put('/', isLoggedIn, (req,res) => {
 router.get('/:id', isLoggedIn, (req, res) => {
   db.User.findById(res.locals.currentUser._id, function(err, user) {
     let userRecipe = user.recipes.id(req.params.id);
-    console.log('userRecipe:', userRecipe);
     res.render('recipes/show', {userRecipe: userRecipe});
   });
 });
