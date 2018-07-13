@@ -4,17 +4,17 @@
 
 <!-- RECIPE BANK -->
 <div class="row">
-  <div class="col-10" id="recipeBank">
+  <div class="col-10" id="recipe-bank">
   </div>
 </div>
 <div class="row">
   <div class="col-12 text-right">
-    <button type="button" class="btn branded-btn" data-toggle="modal" data-target="#newRecipeModal" id="newRecipeBtn">Add new recipe</button>
+    <button type="button" class="btn branded-btn" data-toggle="modal" data-target="#new-recipe-modal" id="new-recipe-btn">Add new recipe</button>
   </div>
 </div>
   
 <!-- NEW RECIPE MODAL -->
-    <div class="modal fade" id="newRecipeModal" tabindex="-1" role="dialog">
+    <div class="modal fade" id="new-recipe-modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -24,19 +24,19 @@
             </button>
           </div>
 
-          <form enctype="multipart/form-data" method="POST" action="/api/recipes">
+          <form enctype="multipart/form-data" method="POST" action="/recipes">
             <div class="container">
               <div class="modal-body">
-                <div class="form-group" id="recipeNameGroup">
+                <div class="form-group" id="recipe-name-group">
                   <div class="row">
-                    <label for="recipeNameInput">Recipe name</label>
-                    <input type="text" class="form-control" id="recipeNameInput" name="recipeNameInput">
+                    <label for="recipe-name-input">Recipe name</label>
+                    <input type="text" class="form-control" id="recipe-name-input" name="recipe-name-input">
                   </div>
                 </div>
-                <div class="form-group" id="mealTypeGroup">
+                <div class="form-group" id="meal-type-group">
                   <div class="row">
-                    <label for="mealTypeSelect">Meal type</label>
-                    <select class="form-control" id="mealTypeSelect" name="mealTypeSelect">
+                    <label for="meal-type-select">Meal type</label>
+                    <select class="form-control" id="meal-type-select" name="meal-type-select">
                       <option>Breakfast</option>
                       <option>Lunch</option>
                       <option>Dinner</option>
@@ -44,19 +44,19 @@
                     </select>
                   </div>
                 </div>
-                <div class="form-group" id="ingredientsGroup">
+                <div class="form-group" id="ingredients-group">
                   <div class="row">
-                    <label for="ingredientsLabel">Ingredients</label>
+                    <label for="ingredients-label">Ingredients</label>
                   </div>
                   <div class="row text-left">
                     <div class="col-2">
-                      <label for="ingredientQtyInput">Qty</label>
+                      <label for="ingredient-qty-input">Qty</label>
                     </div>
                     <div class="col-3">
-                      <label for="ingredientMeasuringUnitSelect">Meas. Unit</label>
+                      <label for="ingredient-measuring-unit-select">Meas. Unit</label>
                     </div>
                     <div class="col-7">
-                      <label for="ingredientItemInput">Item</label>
+                      <label for="ingredient-item-input">Item</label>
                     </div>
                   </div>
                   <div class="row">
@@ -65,10 +65,10 @@
                         <form role="form" autocomplete="off">
                           <div class="entry input-group">
                             <div class="col-2">
-                              <input type="text" class="form-control" id="ingredientQtyInput" name="ingredientQtyInput">
+                              <input type="text" class="form-control" id="ingredient-qty-input" name="ingredient-qty-input">
                             </div>
                             <div class="col-3">
-                              <select class="form-control" id="ingredientMeasuringUnitSelect" name="ingredientMeasuringUnitSelect">
+                              <select class="form-control" id="ingredient-measuring-unit-select" name="ingredient-measuring-unit-select">
                                 <option>can</option>
                                 <option>cup</option>
                                 <option>fl oz</option>
@@ -88,7 +88,7 @@
                               </select>
                             </div>
                             <div class="col-5">
-                              <input type="text" class="form-control" id="ingredientItemInput" name="ingredientItemInput">
+                              <input type="text" class="form-control" id="ingredient-item-input" name="ingredient-item-input">
                             </div>
                             <span class="input-group-btn">
                               <button class="btn btn-success btn-add" type="button"><i class="fas fa-plus"></i></button>
@@ -99,41 +99,41 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group" id="prepInstructionsGroup">
+                <div class="form-group" id="prep-instructions-group">
                   <div class="row">
-                    <label for="prepInstructionsInput">Prep instructions</label>
-                    <textarea class="form-control" id="prepInstructionsTextArea" rows="3"  name="prepInstructionsTextArea"></textarea>
+                    <label for="prep-instructions-input">Prep instructions</label>
+                    <textarea class="form-control" id="prep-instructions-text-area" rows="3"  name="prep-instructions-text-area"></textarea>
                   </div>
                 </div>
-                <div class="form-group" id="prepTimeGroup">
+                <div class="form-group" id="prep-time-group">
                   <div class="row">
-                    <label for="prepTimeInput">Prep time</label>
-                    <input type="text" class="form-control" id="prepTimeInput" name="prepTimeInput" placeholder="10 minutes" onfocus="this.placeholder=''" onblur="this.placeholder='10 minutes'">
+                    <label for="prep-time-input">Prep time</label>
+                    <input type="text" class="form-control" id="prep-time-input" name="prep-time-input" placeholder="10 minutes" onfocus="this.placeholder=''" onblur="this.placeholder='10 minutes'">
                   </div>
                 </div>
-                <div class="form-group" id="cookTimeGroup">
+                <div class="form-group" id="cook-time-group">
                   <div class="row">
-                    <label for="cookTimeInput">Cook time</label>
-                    <input type="text" class="form-control" id="cookTimeInput" name="cookTimeInput" placeholder="15 minutes" onfocus="this.placeholder=''" onblur="this.placeholder='15 minutes'">
+                    <label for="cook-time-input">Cook time</label>
+                    <input type="text" class="form-control" id="cook-time-input" name="cook-time-input" placeholder="15 minutes" onfocus="this.placeholder=''" onblur="this.placeholder='15 minutes'">
                   </div>
                 </div>
-                <div class="form-group" id="servingSizeGroup">
+                <div class="form-group" id="serving-size-group">
                   <div class="row">
-                    <label for="servingSizeSelect">Serving size</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <select class="form-control-sm" id="servingSizeSelect" name="servingSizeSelect">
+                    <label for="serving-size-select">Serving size</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <select class="form-control-sm" id="serving-size-select" name="serving-size-select">
                       <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
                     </select>
                   </div>
                 </div>
-                <div class="form-group" id="imageGroup">
+                <div class="form-group" id="image-group">
                   <div class="row">
-                    <label for="myFile">Upload a photo of the recipe:</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                    <input type="file" id="myFile" name="myFile">
+                    <label for="my-file">Upload a photo of the recipe:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="file" id="my-file" name="my-file">
                   </div>
                 </div>
               </div>
               <div class="modal-footer">
-                <input type="submit" class="btn branded-btn" id="saveRecipeBtn" value="Save recipe">
+                <input type="submit" class="btn branded-btn" id="save-recipe-btn" value="Save recipe">
               </div>
             </div> <!-- close container -->
           </form>
@@ -146,7 +146,7 @@
 <!-- MEALPLAN CALENDAR -->
 <div class="row">
   <div class="col-12">
-    <div class="table-responsive" id="mealPlanCalendar"></div>
+    <div class="table-responsive" id="meal-plan-calendar"></div>
   </div>
 </div>
 
