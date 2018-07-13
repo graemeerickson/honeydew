@@ -1,0 +1,21 @@
+<h3><%=userRecipe.recipeName%></h3>
+<img class="recipe-photo" src="<%= userRecipe.imgUrl %>">
+<br><br>
+<div class="container">
+  <h5>Ingredients:</h5>
+  <ul>
+  <% userRecipe.ingredients.forEach( (ingredient) => { %>
+       <li><%= ingredient.qty %> <%= ingredient.measuringUnit %> <%= ingredient.ingredientName %></li>
+  <% }) %>
+  </ul>
+  <h5>Prep Instructions:</h5>
+  <p><%= userRecipe.prepInstructions %></p>
+  <h5 style="display: inline;">Prep time: </h5><span><%= userRecipe.prepTime %></span><br>
+  <h5 style="display: inline;">Cook time: </h5><span><%= userRecipe.cookTime %></span>
+  <br><br><br>
+  <div class="text-right">
+    <a href="/profile" class="btn" id="cancel-link">Cancel</a>
+    <!-- <a href="/profile"><input type="button" class="btn btn-danger pull-right" id="delete-recipe-btn" data-id="<%=userRecipe._id%>" value="Delete recipe"></a> -->
+    <input type="button" class="btn btn-danger pull-right" id="delete-recipe-btn" data-id="<%=userRecipe._id%>" value="Delete recipe">
+  </div>
+</div>
