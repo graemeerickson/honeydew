@@ -60,7 +60,7 @@ function getAllRecipesHtml(userRecipes) {
 }
 
 function populateMealPlanWithActiveRecipes() {
-  $('.mealPlanSlot').each(function(index) {
+  $('.meal-plan-slot').each(function(index) {
     let elementId = $(this)[0].id;
     $(this).text(userMealPlan[elementId])
   })
