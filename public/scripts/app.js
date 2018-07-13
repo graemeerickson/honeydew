@@ -9,7 +9,7 @@ $(document).ready(function() {
   // initial ajax call to get all user details, including recipes & mealplan
   $.ajax({
     method: 'GET',
-    url: `/api/recipes`,
+    url: `/recipes`,
     success: getUserDetails,
     error: handleError
   });
@@ -34,23 +34,12 @@ $(document).ready(function() {
     return false;
   });
 
-  // set event listener on the View Recipe buttons on the Profile page
-  $('.viewRecipeBtn').on('click',function(e) {
-    e.preventDefault;
-    $.ajax({
-      method: 'POST',
-      url: '/profile/viewRecipe',
-      data: $(this).data()
-    })
-  })
-
   // set event listener on the Delete Recipe button on the View Recipe page
-  $('#deleteRecipeBtn').on('click',function(e) {
-    e.preventDefault;
+  $('#delete-recipe-btn').on('click',function(e) {
+    let dataId = e.target.dataset.id;
     $.ajax({
       method: 'DELETE',
-      url: '/profile/viewRecipe',
-      data: $(this).data(),
+      url: `/recipes/${dataId}`,
       success: handleSuccess,
       error: handleError
     })
@@ -69,15 +58,15 @@ function getAllRecipesHtml(userRecipes) {
 }
 
 function populateMealPlanWithActiveRecipes() {
-  $('.mealPlanSlot').each(function(index) {
+  $('.meal-plan-slot').each(function(index) {
     let elementId = $(this)[0].id;
     $(this).text(userMealPlan[elementId])
   })
 }
 
 function renderHomePage () {
-  var recipeBankDiv = $('#recipeBank');
-  var mealPlanDiv = $('#mealPlanCalendar');
+  var recipeBankDiv = $('#recipe-bank');
+  var mealPlanDiv = $('#meal-plan-calendar');
   
   // empty existing recipe bank and mealplan from view
   recipeBankDiv.empty();
@@ -106,7 +95,7 @@ function setRecipeAndMealplanEventListeners() {
   })
 
   // event listener on meal plan slots to update slot with selected recipe
-  $('.mealPlanSlot').on('click', function(e) {  
+  $('.meal-plan-slot').on('click', function(e) {  
     let scenario;
     let recipeStatus;
     let mealPlanSlotStatus;
@@ -127,7 +116,7 @@ function setRecipeAndMealplanEventListeners() {
       // decrement previous recipe's active count, and update mealplan slot with blank value
       $.ajax({
         method: 'PUT',
-        url: '/api/recipes',
+        url: '/recipes',
         data: {scenario, selectedMealPlanSlotId, selectedMealPlanSlotExistingRecipe},
         success: handleSuccess,
         error: handleError
@@ -141,7 +130,7 @@ function setRecipeAndMealplanEventListeners() {
       // increment selected recipe's active count, and update mealplan slot with recipe name
       $.ajax({
         method: 'PUT',
-        url: '/api/recipes',
+        url: '/recipes',
         data: {scenario, selectedMealPlanSlotId, selectedRecipeId, selectedRecipeName},
         success: handleSuccess,
         error: handleError
@@ -156,7 +145,7 @@ function setRecipeAndMealplanEventListeners() {
       scenario = 'replace-mealplan-slot';
       $.ajax({
         method: 'PUT',
-        url: '/api/recipes',
+        url: '/recipes',
         data: {scenario, selectedMealPlanSlotId, selectedMealPlanSlotExistingRecipe, selectedRecipeId, selectedRecipeName},
         success: handleSuccess,
         error: handleError
