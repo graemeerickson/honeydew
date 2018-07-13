@@ -155,19 +155,9 @@ router.delete('/:id', isLoggedIn, (req, res) => {
   let recipeIdToRemove = req.params.id;
   db.User.findById(res.locals.currentUser._id, function(err, user) {
     if (err) { console.log("Error finding user in db", err) };
-    user.recipes.forEach( (recipe) => {
-      if (recipe.id === recipeIdToRemove) {
-        recipe.remove();
-      }
-    });
+    user.recipes.id(req.params.id).remove();
     user.save();
     res.status(200).send();
-    res.redirect('profile');
-    // user.recipes.findByIdAndDelete(req.params.id, function(error, recipe) { 
-    //   if (error) { console.log("Error finding user's recipe in db", error) };
-    //   user.save();
-    //   res.redirect('profile');
-    // })
   })
 })
 
