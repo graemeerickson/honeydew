@@ -86,15 +86,19 @@ table.table-bordered > tbody > tr > td:hover {
   display: inline;
   vertical-align: bottom;
 }
-.mealPlanSlot {
+.meal-plan-slot {
   font-size: 14px;
 }
-.mobileDay {
+.mobile-day {
   background-color: #F5F5F5;
 }
 .recipe-button {
+  margin-bottom: 8px;
   min-width: 40px;
   padding: 3px;
+}
+.recipe-card {
+  margin-bottom: 20px;
 }
 .recipe-photo {
   border-radius: 7px;
