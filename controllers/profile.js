@@ -18,34 +18,17 @@ router.get('/', isLoggedIn, (req, res) => {
 
 // POST route to capture clicked recipe ID, which will be used to show the recipe details on the View Recipe page
 router.post('/viewRecipe', isLoggedIn, (req, res) => {
-  console.log(req.body.id);
   recipeId = req.body.id;
   res.json(recipeId);
 });
 
-// GET route to show appropriate recipe details on the View Recipe page
+// GET route to show recipe details on the View Recipe page
 router.get('/viewRecipe', isLoggedIn, (req, res) => {
   db.User.findById(res.locals.currentUser._id, function(err, user) {
     const userRecipe = user.recipes.filter( (recipe) => {
       return recipe._id == recipeId;
     })
-    console.log('userRecipe:', userRecipe);
     res.render('viewRecipe', {userRecipe: userRecipe});
-  })
-})
-
-// DELETE route to remove selected recipe from the db
-router.delete('/viewRecipe', isLoggedIn, (req, res) => {
-  recipeId = req.body.id;
-  db.User.findById(res.locals.currentUser._id, function(err, user) {
-    if (err) return res.send(err);
-    user.recipes.filter( (recipe, index) => {
-      if (recipe._id == recipeId) {
-        recipe.remove();
-        user.save();
-        res.redirect('profile');
-      }
-    })
   })
 })
 
