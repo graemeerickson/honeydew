@@ -26,7 +26,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 
 // set and use statements. set view engine and use middleware.
 app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({ extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressLayouts);
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 });
 
 // include routes from controllers
-app.use('/api/recipes', require('./controllers/recipes'));
+app.use('/recipes', require('./controllers/recipes'));
 app.use('/auth', require('./controllers/auth'));
 app.use('/grocerylist', require('./controllers/grocerylist'));
 app.use('/profile', require('./controllers/profile'));
