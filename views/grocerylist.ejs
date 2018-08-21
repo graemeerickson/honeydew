@@ -16,11 +16,11 @@
      }
    }); %>
 
-<!-- sort recipes alphabetically, then display on screen -->
+<!-- display active recipe summary -->
   <ul>
-<%  recipeList.sort().forEach( (recipe) => { %>
-      <li><%= recipe %></li>
-<%  }) %>
+<%  for (let recipe in recipeSummary) { %>
+      <li><%= recipeSummary[recipe] %></li>
+<%  } %>
   </ul>
 
   <h4>INGREDIENTS</h4>
