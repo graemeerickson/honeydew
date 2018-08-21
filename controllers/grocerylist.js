@@ -13,16 +13,9 @@ router.get('/', isLoggedIn, (req, res) => {
     let activeRecipes = currentUser.recipes.filter( (recipe) => {
       return recipe.activeCount > 0;
     });
-    // throw recipe names into an object to de-duplicate
-    let recipeSummaryObj = {};
-    let activeRecipeNames = [];
-    activeRecipes.forEach( recipe => {
-      activeRecipeNames.push(recipe.recipeName);
-    })
-    activeRecipeNames.sort().forEach( (recipe, index) => {
-      recipeSummaryObj[index] = recipe;
-    })
-    res.render('grocerylist', {userRecipes: activeRecipes, recipeSummary: recipeSummaryObj});
+    // throw recipe names into a recipe summary array
+    let activeRecipeNames = activeRecipes.map( recipe => recipe.recipeName).sort();
+    res.render('grocerylist', {userRecipes: activeRecipes, recipeSummary: activeRecipeNames});
   });
 });
 

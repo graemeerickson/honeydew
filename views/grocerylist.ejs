@@ -18,9 +18,9 @@
 
 <!-- display active recipe summary -->
   <ul>
-<%  for (let recipe in recipeSummary) { %>
-      <li><%= recipeSummary[recipe] %></li>
-<%  } %>
+<%  recipeSummary.forEach( recipe => { %>
+      <li><%= recipe %></li>
+<%  }); %>
   </ul>
 
   <h4>INGREDIENTS</h4>
