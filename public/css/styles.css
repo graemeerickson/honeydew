@@ -107,6 +107,9 @@ table.table-bordered > tbody > tr > td:hover {
   color: #A9A9A9;
   cursor: default;
 }
+#login-link {
+  color: #0000EE;
+}
 
 @media only screen and (max-width: 414px) {
   .header-btn {
