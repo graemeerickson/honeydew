@@ -29,59 +29,71 @@
          </div>
        </div>
     <% }) 
-     else { %>
-       <p><i>No breakfast recipes added yet</i></p>
+    } else { %>
+       <div class="col-md-auto col-12"><p class="recipe-type-placeholder-text">No breakfast recipes added yet</p></div>
   <% }; %>
 </div>
 <hr>
 
 <h4>Lunch</h4>
 <div class="row">
-  <% lunchRecipes.forEach( (recipe, index) => { %>
-     <div class="col-md-auto col-12">
-       <div class="card recipe-card">
-         <img class="card-img-top" src="<%= recipe.imgUrl %>" alt="Card image cap">
-         <div class="card-body">
-           <h5 class="card-title"><%= recipe.recipeName %></h5>
-           <p class="card-text">Prep time: <%= recipe.prepTime %><br>Cook time: <%= recipe.cookTime %></p>
-           <a href="/recipes/<%= recipe.id %>"><button type="button" class="btn branded-btn view-recipe-btn" id="view-recipe-btn">View recipe</button></a>
+  <% if (lunchRecipes.length > 0) {
+       lunchRecipes.forEach( (recipe, index) => { %>
+         <div class="col-md-auto col-12">
+         <div class="card recipe-card">
+           <img class="card-img-top" src="<%= recipe.imgUrl %>" alt="Card image cap">
+           <div class="card-body">
+             <h5 class="card-title"><%= recipe.recipeName %></h5>
+             <p class="card-text">Prep time: <%= recipe.prepTime %><br>Cook time: <%= recipe.cookTime %></p>
+             <a href="/recipes/<%= recipe.id %>"><button type="button" class="btn branded-btn view-recipe-btn" id="view-recipe-btn">View recipe</button></a>
+           </div>
          </div>
        </div>
-     </div>
-  <% }) %>
+    <% })
+    } else { %>
+       <div class="col-md-auto col-12"><p class="recipe-type-placeholder-text">No lunch recipes added yet</p></div>
+  <% };  %>
 </div>
 <hr>
 
 <h4>Dinner</h4>
 <div class="row">
-  <% dinnerRecipes.forEach( (recipe, index) => { %>
-     <div class="col-md-auto col-12">
-       <div class="card recipe-card">
-         <img class="card-img-top" src="<%= recipe.imgUrl %>" alt="Card image cap">
-         <div class="card-body">
-           <h5 class="card-title"><%= recipe.recipeName %></h5>
-           <p class="card-text">Prep time: <%= recipe.prepTime %><br>Cook time: <%= recipe.cookTime %></p>
-           <a href="/recipes/<%= recipe.id %>"><button type="button" class="btn branded-btn view-recipe-btn" id="view-recipe-btn">View recipe</button></a>
+  <% if (dinnerRecipes.length > 0) {
+       dinnerRecipes.forEach( (recipe, index) => { %>
+         <div class="col-md-auto col-12">
+           <div class="card recipe-card">
+             <img class="card-img-top" src="<%= recipe.imgUrl %>" alt="Card image cap">
+             <div class="card-body">
+               <h5 class="card-title"><%= recipe.recipeName %></h5>
+               <p class="card-text">Prep time: <%= recipe.prepTime %><br>Cook time: <%= recipe.cookTime %></p>
+               <a href="/recipes/<%= recipe.id %>"><button type="button" class="btn branded-btn view-recipe-btn" id="view-recipe-btn">View recipe</button></a>
+             </div>
+           </div>
          </div>
-       </div>
-     </div>
-  <% }) %>
+    <% })
+    } else { %>
+       <div class="col-md-auto col-12"><p class="recipe-type-placeholder-text">No dinner recipes added yet</p></div>
+  <% };  %>
 </div>
 <hr>
 
 <h4>Dessert</h4>
 <div class="row">
-  <% dessertRecipes.forEach( (recipe, index) => { %>
-    <div class="col-md-auto col-12">
-       <div class="card recipe-card">
-         <img class="card-img-top" src="<%= recipe.imgUrl %>" alt="Card image cap">
-         <div class="card-body">
-           <h5 class="card-title"><%= recipe.recipeName %></h5>
-           <p class="card-text">Prep time: <%= recipe.prepTime %><br>Cook time: <%= recipe.cookTime %></p>
-           <a href="/recipes/<%= recipe.id %>"><button type="button" class="btn branded-btn view-recipe-btn" id="view-recipe-btn">View recipe</button></a>
+  <% if (dessertRecipes.length > 0) {
+       dessertRecipes.forEach( (recipe, index) => { %>
+        <div class="col-md-auto col-12">
+           <div class="card recipe-card">
+             <img class="card-img-top" src="<%= recipe.imgUrl %>" alt="Card image cap">
+             <div class="card-body">
+               <h5 class="card-title"><%= recipe.recipeName %></h5>
+               <p class="card-text">Prep time: <%= recipe.prepTime %><br>Cook time: <%= recipe.cookTime %></p>
+               <a href="/recipes/<%= recipe.id %>"><button type="button" class="btn branded-btn view-recipe-btn" id="view-recipe-btn">View recipe</button></a>
+             </div>
+           </div>
          </div>
-       </div>
-     </div>
-  <% }) %>
+    <% })
+    } else { %>
+       <div class="col-md-auto col-12"><p class="recipe-type-placeholder-text">No dessert recipes added yet</p></div>
+  <% };  %>
 </div>
 <hr>
