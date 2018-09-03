@@ -100,6 +100,10 @@ table.table-bordered > tbody > tr > td:hover {
 .recipe-card {
   margin-bottom: 20px;
 }
+.recipe-type-placeholder-text {
+  color: #a6a6a6;
+  font-style: italic;
+}
 .recipe-photo {
   border-radius: 7px;
 }
